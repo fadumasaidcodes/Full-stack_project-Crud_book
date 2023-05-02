@@ -1,21 +1,112 @@
-<!-- update.handlebars -->
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Update a Book</title>
-		<meta name="description" content="form to update a book">
-		<meta name="author" content="Your Name">
-	</head>
-	<body>
-		<h1>Update a Book</h1>
-		<form action="/details/{{data.id}}/update" method="post">
-			<p>Book Title:<br /><input type="text" name="title" placeholder="book title" value="{{data.title}}" autofocus></p>
-			<p>ISBN13:<br /><input type="number" name="isbn" placeholder="ISBN13 number" value="{{data.isbn}}" maxlength="13" autocomplete="off"></p>
-			<p>Description:<br /><textarea name="description">{{data.description}}</textarea></p>
-			<p><input type="submit" value="Update"></p>
-			  <a href="/">Back to Homepage</a>
-		</form>
-	</body>
+<head>
+    <meta charset="utf-8">
+    <title>Update a Book</title>
+    <meta name="description" content="form to update a book">
+    <meta name="author" content="Your Name">
+    <style>
+        body {
+            background-color: #d19592;
+            background-image: linear-gradient(315deg, #d19592 0%, #c81f70 74%);
+            font-family: 'Arial', sans-serif;
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 50px;
+            font-size: 36px;
+            margin-left: -35px;
+        }
+
+        form {
+            display: inline-block;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: black;
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+p {
+    color: black;
+}
+        .back-btn a {
+            background-color: #0bab64;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .back-btn a:hover {
+            background-color: #3bb78f;
+        }
+    </style>
+</head>
+<body>
+    <h1>Update a Book</h1>
+    <form action="/details/{{data.id}}/update" method="post">
+        <p>Book Title:<br /><input type="text" name="title" placeholder="book title" value="{{data.title}}" autofocus></p>
+        <p>ISBN13:<br /><input type="number" name="isbn" placeholder="ISBN13 number" value="{{data.isbn}}" maxlength="13" autocomplete="off"></p>
+        <p>Description:<br /><textarea name="description">{{data.description}}</textarea></p>
+        <p><input type="submit" value="Update"></p>
+    
+    </form>
+        <a href="/" class="back-btn">Back to Homepage</a>
+</body>
 </html>
-<!-- Update a book -->
