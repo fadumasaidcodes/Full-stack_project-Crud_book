@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>{{title}}</title>
+	<meta name="description" content="book details">
+	<meta name="author" content="Faduma">
+	<style>
+		button.update {
+
+			background-color: #4CAF50;
+			border: none;
+			color: white;
+			padding: 10px 20px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+		}
+
+		button.delete {
+			background-color: #f44336;
+			border: none;
+			color: white;
+			padding: 10px 20px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>{{title}}</h1>
+	<p>ISBN13: {{isbn}}</p>
+	<p>Description: {{description}}</p>
+	<a href="/">Back to Homepage</a>
+	<form action="/details/{{id}}/delete" method="post">
+		<button type="submit" class="delete">Delete</button>
+	</form>
+	<a href="/details/{{id}}/update"><button class="update">Update</button></a>
+</body>
+
+</html>

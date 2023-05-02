@@ -1,0 +1,19 @@
+<!-- details.handlebars -->
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>{{title}}</title>
+		<meta name="description" content="{{description}}">
+		<meta name="author" content="Your Name">
+	</head>
+	<body>
+		<h1>{{title}}</h1>
+		<p>ISBN13: {{isbn}}</p>
+		<p>{{description}}</p>
+		<form action="/details/{{id}}/delete" method="post">
+			<input type="submit" value="Delete">
+		</form>
+		<a href="/">Back to Homepage</a>
+	</body>
+</html>

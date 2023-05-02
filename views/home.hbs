@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>My Favourite Books</title>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+	<link href="css/style.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+	<header>
+		<div class="navbar">
+			<div class="logo">
+				<i class="fas fa-book"></i>
+				<h1>{{title}}</h1>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Books</a></li>
+					<li><a href="#">Contact</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="/form">Add a book</a></li>
+				</ul>
+			</nav>
+
+		</div>
+	</header>
+	<main>
+		<section class="card-container">
+			{{#if query}}
+			<p>Showing results for "{{query}}"</p>
+			{{/if}}
+			{{#each books}}
+			<div class="card">
+				<h2>{{this.title}}</h2>
+				<p>{{this.description}}</p>
+				<p><a href="/details/{{this.id}}">Read more</a></p>
+			</div>
+			{{/each}}
+		</section>
+		<section class="add-book">
+			<a href="/form" class="add-book-link"><i class="fas fa-plus"></i> Add a Book</a>
+		</section>
+
+
+	</main>
+	<footer>
+		<p>&copy; 2023 My Favourite Books. All rights reserved.</p>
+	</footer>
+</body>
+
+</html>

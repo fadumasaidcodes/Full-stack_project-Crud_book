@@ -1,0 +1,21 @@
+<!-- update.handlebars -->
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Update a Book</title>
+		<meta name="description" content="form to update a book">
+		<meta name="author" content="Your Name">
+	</head>
+	<body>
+		<h1>Update a Book</h1>
+		<form action="/details/{{data.id}}/update" method="post">
+			<p>Book Title:<br /><input type="text" name="title" placeholder="book title" value="{{data.title}}" autofocus></p>
+			<p>ISBN13:<br /><input type="number" name="isbn" placeholder="ISBN13 number" value="{{data.isbn}}" maxlength="13" autocomplete="off"></p>
+			<p>Description:<br /><textarea name="description">{{data.description}}</textarea></p>
+			<p><input type="submit" value="Update"></p>
+			  <a href="/">Back to Homepage</a>
+		</form>
+	</body>
+</html>
+<!-- Update a book -->
