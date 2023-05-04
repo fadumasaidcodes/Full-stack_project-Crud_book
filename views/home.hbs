@@ -25,6 +25,11 @@
 			</nav>
 
 		</div>
+
+<input type="checkbox" id="switch" /><label for="switch">Toggle</label>
+
+
+
 	</header>
 	<main>
 		<section class="card-container">
@@ -42,6 +47,26 @@
 		<section class="add-book">
 			<a href="/form" class="add-book-link"><i class="fas fa-plus"></i> Add a Book</a>
 		</section>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script>
+			$(document).ready(function () {
+				var isDark = true;
+				var themeButtonEl = $('#switch');
+
+				themeButtonEl.on('click', function () {
+					if (isDark) {
+						$('body').css({ 'background-color': '#FFFFFF', color: '#1a1a1a' });
+						$('.card').css({ 'background-color': '#FFFFFF', color: '#FFFFFF' });
+						isDark = !isDark;
+					} else {
+						$('body').css({ 'background-color': '#1a1a1a', color: '#1a1a1a' });
+						$('.card').css({ 'background-color': '#1a1a1a', color: '#1a1a1a' });
+						isDark = !isDark;
+					}
+				});
+			});
+		</script>
+
 
 
 	</main>
