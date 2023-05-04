@@ -49,23 +49,24 @@
 		</section>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script>
-			$(document).ready(function () {
-				var isDark = true;
-				var themeButtonEl = $('#switch');
+	$(document).ready(function () {
+		var isDark = true;
+		var themeButtonEl = $('#switch');
 
-				themeButtonEl.on('click', function () {
-					if (isDark) {
-						$('body').css({ 'background-color': '#FFFFFF', color: '#1a1a1a' });
-						$('.card').css({ 'background-color': '#FFFFFF', color: '#FFFFFF' });
-						isDark = !isDark;
-					} else {
-						$('body').css({ 'background-color': '#1a1a1a', color: '#1a1a1a' });
-						$('.card').css({ 'background-color': '#1a1a1a', color: '#1a1a1a' });
-						isDark = !isDark;
-					}
-				});
-			});
-		</script>
+		themeButtonEl.on('click', function () {
+			if (isDark) {
+				$('body').css({ 'background-color': '#FFFFFF', color: '#1a1a1a' });
+				$('.card').css({ 'background-color': '#FFFFFF', color: '#000000' });
+				isDark = !isDark;
+			} else {
+				$('body').css({ 'background-color': '#1a1a1a', color: '#FFFFFF' });
+				$('.card').css({ 'background-color': '#1a1a1a', color: '#FFFFFF' });
+				isDark = !isDark;
+			}
+		});
+	});
+</script>
+
 
 
 
