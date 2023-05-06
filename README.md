@@ -1,9 +1,9 @@
 [Live](https://book-tg75.onrender.com/)[Note: the website may take a few seconds to load as rendering can be slow].
 # Bookshop Web Application
 
-
-The Bookshop Web Application is a web application that allows users to view, add, update and delete books from the bookshop.
-
+```
+The Bookshop Web Application is a full stack web application built using Node.js, Koa, Handlebars (hbs) and SQL that enables users to view, add, update and delete books from the bookshop. It is designed to provide an easy-to-use interface that allows users to manage their books and book-related information effectively. The application stores data such as user information and book details in a database, making it easy to retrieve and update information.
+```
 ## User Stories
 The Bookshop Web Application has the following user stories:
 ```
