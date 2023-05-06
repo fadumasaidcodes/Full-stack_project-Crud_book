@@ -3,10 +3,13 @@
 'use strict'
 
 const Koa = require('koa')
+const bcrypt = require('bcrypt')
+const session = require('koa-session');
 const Router = require('koa-router')
 const stat = require('koa-static')
 const handlebars = require('koa-hbs-renderer')
 const bodyParser = require('koa-bodyparser')
+const crypto = require('crypto') // Add this line to import the crypto module
 
 const sqlite3 = require('sqlite3')
 const { open } = require('sqlite')
@@ -18,7 +21,11 @@ app.use(bodyParser())
 app.use(handlebars({ paths: { views: `${__dirname}/views` } }))
 app.use(router.routes())
 app.use(bodyParser())
+const sessionSecretKey = crypto.randomBytes(32).toString('hex');
 
+// Initialize session middleware
+app.keys = [sessionSecretKey];
+app.use(session(app));
 const port = 8080
 let db = {}
 
@@ -44,25 +51,6 @@ router.get('/', async ctx => {
     ctx.body = err.message
   }
 })
-
-router.get('/search', async ctx => {
-  try {
-    let sql = 'SELECT id, title FROM books;';
-    let querystring = '';
-    let resultsCount = 0;
-    if (ctx.query.q) {
-      const searchTerm = ctx.query.q.toUpperCase();
-      sql = `SELECT * FROM books WHERE upper(title) LIKE ? OR upper(description) LIKE ? OR upper(author) LIKE ? OR upper(publisher) LIKE ? OR year = ?`;
-      const data = await db.all(sql, [`%${searchTerm}%`, `%${searchTerm}%`, `%${searchTerm}%`, `%${searchTerm}%`, searchTerm]);
-      books = data;
-      querystring = ctx.query.q;
-      resultsCount = data.length;
-    }
-    await ctx.render('newindex', { title: 'Bookshop', books, query: querystring, resultsCount });
-  } catch (err) {
-    ctx.body = err.message;
-  }
-});
 
 router.get('/details/:id', async ctx => {
   try {
@@ -113,6 +101,114 @@ router.get('/details/:id/update', async ctx => {
 	await db.exec(sql)
 	ctx.redirect('/')
   })
-  
+// Login route
+router.get('/login', async (ctx) => {
+  await ctx.render('login')
+})
+
+
+// Set up login route
+router.get('/login', async ctx => {
+  await ctx.render('login')
+})
+
+router.post('/login', async ctx => {
+  // Retrieve user credentials from request body
+  const { username, password } = ctx.request.body
+
+  // Retrieve user from database
+  const db = await open({
+    filename: './bookshop.db',
+    driver: sqlite3.Database
+  })
+  const user = await db.get('SELECT * FROM users WHERE username = ?', username)
+
+  // Check if user exists
+  if (!user) {
+    ctx.status = 401
+    await ctx.render('login', { error: 'Invalid username or password' })
+    return
+  }
+
+  // Check if password is correct
+  const passwordIsValid = await bcrypt.compare(password, user.password)
+  if (!passwordIsValid) {
+    ctx.status = 401
+    await ctx.render('login', { error: 'Invalid username or password' })
+    return
+  }
+
+  // Set session data
+  ctx.session.user = { id: user.id, username: user.username }
+
+  // Redirect to home page
+  ctx.redirect('/')
+})
+
+
+
+
+
+router.get('/homes', async (ctx) => {
+  const user = ctx.session.user
+
+  // Check if user is logged in
+  if (!user) {
+    ctx.redirect('/login')
+    return
+  }
+
+  await ctx.render('homes', { username: user.username })
+})
+
+
+// Register route
+router.get('/register', async (ctx) => {
+  await ctx.render('register')
+})
+
+router.post('/register', async (ctx) => {
+  const { username, password, confirmPassword } = ctx.request.body
+
+  // Validate user input
+  if (!username || !password || !confirmPassword) {
+    ctx.flash = { error: 'Please enter a username, password and confirm password' }
+    ctx.redirect('/register')
+    return
+  }
+
+  if (password !== confirmPassword) {
+    ctx.flash = { error: 'Passwords do not match' }
+    ctx.redirect('/register')
+    return
+  }
+
+  try {
+    // Check if the user already exists in the database
+    const user = await db.get('SELECT * FROM users WHERE username = ?', username)
+    if (user) {
+      ctx.flash = { error: 'User already exists' }
+      ctx.redirect('/register')
+      return
+    }
+
+    // Hash the password
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(password, salt)
+
+    // Create a new user in the database
+    await db.run('INSERT INTO users (username, password) VALUES (?, ?)', username, hashedPassword)
+
+    // Redirect to login page after successful registration
+    ctx.flash = { success: 'Registration successful, please log in' }
+    ctx.redirect('/login')
+    return
+  } catch (err) {
+    ctx.flash = { error: err.message }
+    ctx.redirect('/register')
+    return
+  }
+})
+
 
 module.exports = app.listen(port, () => console.log(`listening on port ${port}`))

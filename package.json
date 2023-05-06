@@ -10,10 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
     "koa-hbs-renderer": "^1.2.0",
     "koa-router": "^7.4.0",
+    "koa-session": "^6.4.0",
     "koa-static": "^5.0.0",
     "sqlite": "^4.1.2",
     "sqlite-async": "^1.1.5",
