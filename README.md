@@ -5,14 +5,19 @@ The Bookshop Web Application is a full stack web application built using Node.js
 
 ## project description 
 ```
-This is a Node.js application that uses the Koa web framework to handle HTTP requests and responses. 
-It also uses several third-party modules, including bcrypt, koa-session, koa-router, 
-koa-static, koa-hbs-renderer, koa-bodyparser, and sqlite3.
-
-The application creates an HTTP server that listens on port 8080. 
-When the server receives an HTTP request, it uses the Koa router to match the request to a handler function. 
-The handler function interacts with a SQLite 
-database to perform CRUD operations on a books table.
+* This is a Node.js application.
+* It uses the Koa web framework to handle HTTP requests and responses.
+* It uses several third-party modules, including:
+- bcrypt
+- koa-session
+- koa-router
+- koa-static
+- koa-hbs-renderer
+- koa-bodyparser
+- sqlite3
+- The application creates an HTTP server that listens on port 8080.
+- When the server receives an HTTP request, it uses the Koa router to match the request to a handler function.
+- The handler function interacts with a SQLite database to perform CRUD operations on a books table.
 ```
 The application has several routes, including:
 
