@@ -1,4 +1,5 @@
 # Bookshop Web Application
+-[Live](https://book-tg75.onrender.com/)[Note: the website may take a few seconds to load as rendering can be slow]
 The Bookshop Web Application is a web application that allows users to view, add, update and delete books from the bookshop.
 
 ## User Stories
