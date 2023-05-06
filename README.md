@@ -77,7 +77,7 @@ To install the Bookshop Web Application, please follow these steps:
 # Usage
 To use the Bookshop Web Application, please follow these steps:
 
-- Navigate to http://localhost:3000 in your web browser.
+- Navigate to http://localhost:8080 in your web browser.
 - If you are a new user, click on the "register" button and fill out the registration form with your username, password, and confirm password.
 - If you are a registered user, click on the "login" button and provide your username and password.
 - Once logged in, you will be able to view a list of books available in the bookshop.
