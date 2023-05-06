@@ -13,88 +13,89 @@
             height: 100vh;
         }
 
-        .login-form {
-            background-color: #FFFFFF;
-            border-radius: 20px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-shadow: 10px 10px 30px #d9d9d9, -10px -10px 30px #ffffff;
-        }
+           .login-form {
+        background-color: #FFFFFF;
+        border-radius: 20px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: -10px -10px 20px #ffffff, 10px 10px 20px #d9d9d9;
+    }
 
-        .login-form h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
+    .login-form h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
 
-        .field {
-            height: 50px;
-            width: 100%;
-            display: flex;
-            position: relative;
-        }
+    .field {
+        height: 50px;
+        width: 100%;
+        display: flex;
+        position: relative;
+    }
 
-        .field:nth-child(2) {
-            margin-top: 20px;
-        }
+    .field:nth-child(2) {
+        margin-top: 20px;
+    }
 
-        .field input {
-            height: 100%;
-            width: 100%;
-            padding-left: 45px;
-            outline: none;
-            border: none;
-            font-size: 18px;
-            background: #dde1e7;
-            color: #595959;
-            border-radius: 25px;
-            box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #ffffff73;
-        }
+    .field input {
+        height: 100%;
+        width: 100%;
+        padding-left: 45px;
+        outline: none;
+        border: none;
+        font-size: 18px;
+        background: #dde1e7;
+        color: #595959;
+        border-radius: 25px;
+        box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #ffffff73;
+    }
 
-        .field input:focus {
-            box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #ffffff73;
-        }
+    .field input:focus {
+        box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #ffffff73;
+    }
 
-        .field span {
-            position: absolute;
-            color: #595959;
-            width: 50px;
-            line-height: 50px;
-        }
+    .field span {
+        position: absolute;
+        color: #595959;
+        width: 50px;
+        line-height: 50px;
+    }
 
-        .field label {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            left: 45px;
-            pointer-events: none;
-            color: #666666;
-        }
+    .field label {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 45px;
+        pointer-events: none;
+        color: #666666;
+    }
 
-        .field input:valid~label {
-            opacity: 0;
-        }
+    .field input:valid~label {
+        opacity: 0;
+    }
 
-        .login-form input[type=submit] {
-            background-color: #4CAF50;
-            color: #FFFFFF;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            box-shadow: 10px 10px 30px #d9d9d9, -10px -10px 30px #ffffff;
-            transition: all 0.3s ease-in-out;
-        }
+    .login-form input[type=submit] {
+        background-color: #FFFFFF;
+        color: #595959;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        box-shadow: -10px -10px 20px #ffffff, 10px 10px 20px #d9d9d9;
+        transition: all 0.3s ease-in-out;
+        margin-top: 20px;
+    }
 
-        .login-form input[type=submit]:hover {
-            background-color: #3E8E41;
-        }
+    .login-form input[type=submit]:hover {
+        box-shadow: -5px -5px 10px #ffffff, 5px 5px 10px #d9d9d9;
+    }
 
-        .error-message {
-            color: red;
-            margin-bottom: 20px;
-        }
+    .error-message {
+        color: red;
+        margin-bottom: 20px;
+    }
     </style>
 </head>
 
