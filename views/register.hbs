@@ -1,31 +1,134 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Register</title>
-  </head>
-  <body>
-    <h1>Register</h1>
-    {{#if flash.error}}
-    <div style="color: red">{{flash.error}}</div>
-    {{/if}}
-    <form method="post" action="/register">
-      <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username">
-      </div>
-      <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password">
-      </div>
-      <div>
-        <label for="confirmPassword">Confirm Password:</label>
-        <input type="password" id="confirmPassword" name="confirmPassword">
-      </div>
-      <div>
-        <input type="submit" value="Register">
-      </div>
-    </form>
-  </body>
-</html>
+    <style>
+        body {
+            background: url("bg.png"), -webkit-linear-gradient(bottom, #0250c5, #d43f8d);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
+        .login-form {
+            background-color: #FFFFFF;
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
+
+        .login-form h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .field {
+            height: 50px;
+            width: 100%;
+            display: flex;
+            position: relative;
+        }
+
+        .field:nth-child(2),
+        .field:nth-child(3) {
+            margin-top: 20px;
+        }
+
+        .field input {
+            height: 100%;
+            width: 100%;
+            padding-left: 45px;
+            outline: none;
+            border: none;
+            font-size: 18px;
+            background: #dde1e7;
+            color: #595959;
+            border-radius: 25px;
+            box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #ffffff73;
+        }
+
+        .field input:focus {
+            box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #ffffff73;
+        }
+
+        .field span {
+            position: absolute;
+            color: #595959;
+            width: 50px;
+            line-height: 50px;
+        }
+
+        .field label {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 45px;
+            pointer-events: none;
+            color: #666666;
+        }
+
+        .field input:valid~label {
+            opacity: 0;
+        }
+
+        .login-form input[type=submit] {
+            background-color: #f1f1f1;
+            color: #595959;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 5px 5px 15px #b7b7b7,
+                -5px -5px 15px #ffffff;
+            transition: all 0.3s ease-in-out;
+            margin-top: 20px;
+        }
+
+        .login-form input[type=submit]:hover {
+            background-color: #e1e1e1;
+            box-shadow: 2px 2px 10px #b7b7b7,
+                -2px -2px 10px #ffffff;
+        }
+
+        .error-message {
+            color: red;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-form">
+        <h1>Register</h1>
+        {{#if flash.error}}
+        <div class="error-message">{{flash.error}}</div>
+        {{/if}}
+        <form method="post" action="/register">
+            <div class="field">
+                <span class="fas fa-user"></span>
+                <input type="text" id="username" name="username" required>
+                <label for="username">Username</label>
+            </div>
+            <div class="field">
+                <span class="fas fa-lock"></span>
+                <input type="password" id="password" name="password" required>
+                <label for="password">Password</label>
+            </div>
+            <div class="field">
+                <span class="fas fa-lock"></span>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <label for="confirmPassword">Confirm Password</label>
+            </div>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
+</body>
+
+</html>
