@@ -1,41 +1,70 @@
-# book
-As a book lover, I want to be able to access and use the bookshop web application.
-# Users story 
-```
-- As a new user, I want to be able to register for an account.
-    - I can do this by clicking on the "register" button and filling out the registration form with my username, password, and confirm password.
-    - If I try to register without providing all the required information, I will see an error message prompting me to provide all the required information.
-    - If I try to register with a username that already exists, I will see an error message telling me that the username is already taken.
-    - If I try to register with a password that does not match the confirm password, I will see an error message telling me that the passwords do not match.
-    - If my registration is successful, I will be redirected to the home page.
+# Bookshop Web Application
+The Bookshop Web Application is a web application that allows users to view, add, update and delete books from the bookshop.
 
-- As a registered user, I want to be able to log in to my account.
-    - I can do this by clicking on the "login" button and providing my username and password.
-    - If I try to log in with incorrect username or password, I will see an error message telling me that my login information is incorrect.
-    - If my login is successful, I will be redirected to the home page.
+## User Stories
+The Bookshop Web Application has the following user stories:
 
-- As a user, I want to be able to view a list of books available in the bookshop.
-    - I can do this by visiting the home page.
-    - I will see a list of book titles and their corresponding IDs.
-    - I can click on a book title to view more details about the book.
+As a new user, I want to be able to register for an account.
+As a registered user, I want to be able to log in to my account.
+As a user, I want to be able to view a list of books available in the bookshop.
+As a user, I want to be able to view more details about a book.
+As a registered user, I want to be able to add a new book to the bookshop.
+As a registered user, I want to be able to update a book in the bookshop.
+As a registered user, I want to be able to delete a book from the bookshop.
 
-- As a user, I want to be able to view more details about a book.
-    - I can do this by clicking on a book title in the list of books available in the bookshop.
-    - I will be redirected to a page showing more details about the book, including the book title, ISBN, and description.
-    - I can click on the "back to home" button to return to the home page.
+## Technologies Used
+The Bookshop Web Application was built using the following technologies:
 
-- As a registered user, I want to be able to add a new book to the bookshop.
-    - I can do this by clicking on the "add book" button and filling out the add book form with the book title, ISBN, and description.
-    - If I try to add a book without providing all the required information, I will see an error message prompting me to provide all the required information.
-    - If my book is successfully added, I will be redirected to the home page.
+* Node.js
+* Koa
+* SQLite3
+* Handlebars
+* CSS
 
-- As a registered user, I want to be able to update a book in the bookshop.
-    - I can do this by clicking on the "update" button next to a book title in the list of books available in the bookshop.
-    - I will be redirected to a page where I can edit the book title, ISBN, and description.
-    - If I try to update a book without providing all the required information, I will see an error message prompting me to provide all the required information.
-    - If my book is successfully updated, I will be redirected to the book details page.
+## Table of Contents
+Installation
+Usage
+Future Improvements
+Credits
+Author
 
-- As a registered user, I want to be able to delete a book from the bookshop.
-    - I can do this by clicking on the "delete" button next to a book title in the list of books available in the bookshop.
-    - If I confirm that I want to delete the book, the book will be deleted from the bookshop and I will be redirected to the home page.
-```
+## Installation
+To install the Bookshop Web Application, please follow these steps:
+
+- Clone the repository to your local machine.
+- Open the terminal and navigate to the project directory.
+- Run npm install to install the dependencies.
+- Run npm run dev to start the server.
+
+# Usage
+To use the Bookshop Web Application, please follow these steps:
+
+- Navigate to http://localhost:3000 in your web browser.
+- If you are a new user, click on the "register" button and fill out the registration form with your username, password, and confirm password.
+- If you are a registered user, click on the "login" button and provide your username and password.
+- Once logged in, you will be able to view a list of books available in the bookshop.
+- o view more details about a book, click on the book title in the list.
+- To add a new book, click on the "add book" button and fill out the add book form with the book title, ISBN, and description.
+- To update a book, click on the "update" button next to a book title in the list of books available in the bookshop.
+- To delete a book, click on the "delete" button next to a book title in the list of books available in the bookshop.
+## Future Improvements
+The Bookshop Web Application has the following areas that could be improved:
+
+- Add search functionality to the book list page.
+- Implement pagination for the book list page.
+- Allow users to upload book images.
+- Add authentication middleware to protect the routes that require login.
+- Improve the UI/UX of the application.
+
+## Credits
+The following resources were used in the development of the Bookshop Web Application:
+
+- Node.js: https://nodejs.org/en/
+- Koa: https://koajs.com/
+- SQLite3: https://www.sqlite.org/index.html
+- Handlebars: https://handlebarsjs.com/
+- CSS: https://www.w3schools.com/css/default.asp
+- Documentation: https://developer.mozilla.org/en-US/
+- FreeCodeCamp: https://www.freecodecamp.org/
+## Author
+The Bookshop Web Application was developed by Faduma Ibrahim. If you have any questions or suggestions, please feel free to contact me.
