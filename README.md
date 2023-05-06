@@ -43,7 +43,7 @@ To use the Bookshop Web Application, please follow these steps:
 - If you are a new user, click on the "register" button and fill out the registration form with your username, password, and confirm password.
 - If you are a registered user, click on the "login" button and provide your username and password.
 - Once logged in, you will be able to view a list of books available in the bookshop.
-- o view more details about a book, click on the book title in the list.
+- To view more details about a book, click on the book title in the list.
 - To add a new book, click on the "add book" button and fill out the add book form with the book title, ISBN, and description.
 - To update a book, click on the "update" button next to a book title in the list of books available in the bookshop.
 - To delete a book, click on the "delete" button next to a book title in the list of books available in the bookshop.
