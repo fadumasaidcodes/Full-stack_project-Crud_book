@@ -59,11 +59,12 @@ The Bookshop Web Application was built using the following technologies:
 * CSS
 
 ## Table of Contents
-Installation
-Usage
-Future Improvements
-Credits
-Author
+- Installation
+- Usage
+- Future Improvements
+- Credits
+- Author
+- Screenshot
 
 ## Installation
 To install the Bookshop Web Application, please follow these steps:
