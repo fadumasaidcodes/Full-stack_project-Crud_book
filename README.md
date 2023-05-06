@@ -47,7 +47,27 @@ To use the Bookshop Web Application, please follow these steps:
 - To add a new book, click on the "add book" button and fill out the add book form with the book title, ISBN, and description.
 - To update a book, click on the "update" button next to a book title in the list of books available in the bookshop.
 - To delete a book, click on the "delete" button next to a book title in the list of books available in the bookshop.
+
+* Instructions on how to use the application, including:
+
+- To access the home page, go to https://book-tg75.onrender.com/ (Note: the website may take a few seconds to load as rendering can be slow)
+
+- To view more details about a book, append "/details/<book_id>" to the URL. For example, to view details about book with id=1, go to https://book-tg75.onrender.com/details/1.
+
+- To log in to your account, go to https://book-tg75.onrender.com/login and enter your credentials.
+
+- To register a new account, go to https://book-tg75.onrender.com/register and fill out the registration form.
+
+- To update your account information, go to https://book-tg75.onrender.com/update and enter your updated information.
+
+- To add a new book, go to https://book-tg75.onrender.com/form and fill out the book information form.
+
+## Screenshot
+
+
+
 ## Future Improvements
+ 
 The Bookshop Web Application has the following areas that could be improved:
 
 - Add search functionality to the book list page.
