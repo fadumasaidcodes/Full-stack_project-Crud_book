@@ -3,25 +3,81 @@
   <head>
     <meta charset="utf-8">
     <title>Login</title>
+    <style>
+      body {
+        background-color: #E6EBEF;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      
+      .login-form {
+        background-color: #FFFFFF;
+        box-shadow: 4px 4px 10px #C4C4C4, -4px -4px 10px #FFFFFF;
+        border-radius: 20px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .login-form h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      
+      .login-form label {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+      
+      .login-form input[type=text],
+      .login-form input[type=password] {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #F3F4F6;
+        box-shadow: inset 4px 4px 10px #C4C4C4, inset -4px -4px 10px #FFFFFF;
+        margin-bottom: 20px;
+        width: 100%;
+      }
+      
+      .login-form input[type=submit] {
+        background-color: #4CAF50;
+        color: #FFFFFF;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 4px 4px 10px #C4C4C4, -4px -4px 10px #FFFFFF;
+        transition: all 0.3s ease-in-out;
+      }
+      
+      .login-form input[type=submit]:hover {
+        background-color: #3E8E41;
+      }
+      
+      .error-message {
+        color: red;
+        margin-bottom: 20px;
+      }
+    </style>
   </head>
   <body>
-    <h1>Login</h1>
-    {{#if flash.error}}
-    <div style="color: red">{{flash.error}}</div>
-    {{/if}}
-    <form method="post" action="/login">
-      <div>
+    <div class="login-form">
+      <h1>Login</h1>
+      {{#if flash.error}}
+      <div class="error-message">{{flash.error}}</div>
+      {{/if}}
+      <form method="post" action="/login">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username">
-      </div>
-      <div>
         <label for="password">Password:</label>
         <input type="password" id="password" name="password">
-      </div>
-      <div>
         <input type="submit" value="Login">
-      </div>
-    </form>
+      </form>
+    </div>
   </body>
 </html>
 
