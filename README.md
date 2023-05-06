@@ -3,7 +3,7 @@
 
 The Bookshop Web Application is a full stack web application built using Node.js, Koa, Handlebars (hbs) and SQL that enables users to view, add, update and delete books from the bookshop. It is designed to provide an easy-to-use interface that allows users to manage their books and book-related information effectively. The application stores data such as user information and book details in a database, making it easy to retrieve and update information.
 
-## project description 
+## Project description 
 ```
 * This is a Node.js application.
 * It uses the Koa web framework to handle HTTP requests and responses.
