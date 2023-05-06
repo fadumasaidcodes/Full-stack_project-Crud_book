@@ -52,7 +52,7 @@ To use the Bookshop Web Application, please follow these steps:
 
 - To access the home page, go to https://book-tg75.onrender.com/ (Note: the website may take a few seconds to load as rendering can be slow)
 
-- To view more details about a book, append "/details/<book_id>" to the URL. For example, to view details about book with id=1, go to https://book-tg75.onrender.com/details/1.
+- To view more details about a book, append "/details/<book_id>" to the URL. For example, to view details about book with id=1, go to https://book-tg75.onrender.com/details/2.
 
 - To log in to your account, go to https://book-tg75.onrender.com/login and enter your credentials.
 
