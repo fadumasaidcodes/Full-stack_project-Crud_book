@@ -95,12 +95,14 @@ router.get('/details/:id/update', async ctx => {
   })
   
   // Delete a book
-  router.get('/details/:id/delete', async ctx => {
-	const id = ctx.params.id
-	const sql = `DELETE FROM books WHERE id=${id};`
-	await db.exec(sql)
-	ctx.redirect('/')
-  })
+
+router.post('/details/:id/delete', async ctx => {
+  const id = ctx.params.id
+  const sql = `DELETE FROM books WHERE id=${id};`
+  await db.exec(sql)
+  ctx.redirect('/')
+})
+
 // Login route
 router.get('/login', async (ctx) => {
   await ctx.render('login')
