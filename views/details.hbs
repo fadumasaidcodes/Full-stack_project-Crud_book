@@ -1,101 +1,87 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>{{title}}</title>
-	<meta name="description" content="book details">
-	<meta name="author" content="Faduma">
-	<style>
-		body {
-			background-color: #3bb78f;
-			background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
-			color: white;
-			font-family: 'Arial', sans-serif;
-			text-align: center;
-			padding: 50px;
-		}
+  <meta charset="utf-8">
+  <title>{{title}}</title>
+  <meta name="description" content="book details">
+  <meta name="author" content="Faduma">
+  <style>
+    body {
+      background-color: #3bb78f;
+      background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
+      color: white;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
 
-		h1 {
-			margin-bottom: 20px;
-			font-size: 36px;
-		}
+    h1 {
+      margin-bottom: 20px;
+      font-size: 36px;
+    }
 
-		p {
-			margin-bottom: 10px;
-			font-size: 20px;
-		}
+    p {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
 
-		button.update {
-			background-color: #af4c86;
-			border: none;
-			color: white;
-			padding: 10px 20px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			font-size: 16px;
-			margin-right: 10px;
-			cursor: pointer;
-			transition: background-color 0.3s;
-		}
+    button.update,
+    button.delete {
+      background-color: #af4c86;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-right: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
 
-		button.delete {
-			background-color: #f44336;
-			border: none;
-			color: white;
-			padding: 10px 20px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			font-size: 16px;
-			margin-right: 10px;
-			cursor: pointer;
-			transition: background-color 0.3s;
-		}
+    button.delete {
+      background-color: #f44336;
+    }
 
-		button.update:hover,
-		button.delete:hover {
-			background-color: #333;
-		}
+    button.update:hover,
+    button.delete:hover {
+      background-color: #333;
+    }
 
-		.isbn {
-			color: black;
-			font-weight: bold;
-			font-size: 24px;
-		}
+    .isbn,
+    .title {
+      color: black;
+      font-weight: bold;
+      font-size: 24px;
+    }
 
-		.title {
-			color: black;
-			font-weight: bold;
-			font-size: 24px;
-		}
-
-		.details {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			flex-direction: column;
-		}
-	</style>
+    .details {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+  </style>
 </head>
 <body>
-	<div class="details">
-		<h1>{{title}}</h1>
-		<p class="isbn">ISBN13: {{isbn}}</p>
-		<p class="description">{{description}}</p>
-	
-		<br>
-		<br>
-		<br>
-		<form action="/details/{{id}}/delete" method="post">
-			<button type="submit" class="delete">Delete</button>
-		</form>
-		<br>
-		<br>
-		<div>
-			<a href="/details/{{id}}/update"><button class="update">Update</button></a>
-			<a href="/"><button class="update">Home</button></a>
-		</div>
-	</div>
+  <div class="details">
+    <h1>{{title}}</h1>
+    <p class="isbn">ISBN13: {{isbn}}</p>
+    <p class="description">{{description}}</p>
+    
+    <br>
+    <br>
+    <br>
+    <form action="/details/{{id}}/delete" method="post">
+      <button type="submit" class="delete">Delete</button>
+    </form>
+    <br>
+    <br>
+    <div>
+      <a href="/details/{{id}}/update"><button class="update">Update</button></a>
+      <a href="/"><button class="update">Home</button></a>
+    </div>
+  </div>
 </body>
 </html>
