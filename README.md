@@ -3,15 +3,15 @@ The Bookshop Web Application is a web application that allows users to view, add
 
 ## User Stories
 The Bookshop Web Application has the following user stories:
-
-As a new user, I want to be able to register for an account.
-As a registered user, I want to be able to log in to my account.
-As a user, I want to be able to view a list of books available in the bookshop.
-As a user, I want to be able to view more details about a book.
-As a registered user, I want to be able to add a new book to the bookshop.
-As a registered user, I want to be able to update a book in the bookshop.
-As a registered user, I want to be able to delete a book from the bookshop.
-
+```
+- As a new user, I want to be able to register for an account.
+- As a registered user, I want to be able to log in to my account.
+- As a user, I want to be able to view a list of books available in the bookshop.
+- As a user, I want to be able to view more details about a book.
+- As a registered user, I want to be able to add a new book to the bookshop.
+- As a registered user, I want to be able to update a book in the bookshop.
+- As a registered user, I want to be able to delete a book from the bookshop.
+```
 ## Technologies Used
 The Bookshop Web Application was built using the following technologies:
 
@@ -68,3 +68,5 @@ The following resources were used in the development of the Bookshop Web Applica
 - FreeCodeCamp: https://www.freecodecamp.org/
 ## Author
 The Bookshop Web Application was developed by Faduma Ibrahim. If you have any questions or suggestions, please feel free to contact me.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
