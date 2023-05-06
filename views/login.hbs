@@ -1,88 +1,120 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Login</title>
     <style>
-      body {
-        background-color: #E6EBEF;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
-      
-       .login-form {
-    background-color: #FFFFFF;
-    box-shadow: 10px 10px 20px #c1c1c1, -10px -10px 20px #ffffff;
-    border-radius: 20px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .login-form h1 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #4CAF50;
-    text-shadow: 2px 2px 4px #c1c1c1;
-  }
-  
-  .login-form label {
-    font-size: 16px;
-    margin-bottom: 10px;
-    color: #4CAF50;
-    text-shadow: 1px 1px 2px #c1c1c1;
-  }
-  
-  .login-form input[type=text],
-  .login-form input[type=password] {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #F3F4F6;
-    box-shadow: 10px 10px 20px #c1c1c1, -10px -10px 20px #ffffff;
-    margin-bottom: 20px;
-    width: 100%;
-  }
-  
-  .login-form input[type=submit] {
-    background-color: #4CAF50;
-    color: #FFFFFF;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    box-shadow: 10px 10px 20px #c1c1c1, -10px -10px 20px #ffffff;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .login-form input[type=submit]:hover {
-    background-color: #3E8E41;
-  }
-  
-  .error-message {
-    color: red;
-    margin-bottom: 20px;
-  }
-    </style>
-  </head>
-  <body>
-    <div class="login-form">
-      <h1>Login</h1>
-      {{#if flash.error}}
-      <div class="error-message">{{flash.error}}</div>
-      {{/if}}
-      <form method="post" action="/login">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password">
-        <input type="submit" value="Login">
-      </form>
-    </div>
-  </body>
-</html>
+        body {
+            background-color: #E6EBEF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
+        .login-form {
+            background-color: #FFFFFF;
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 10px 10px 30px #d9d9d9, -10px -10px 30px #ffffff;
+        }
+
+        .login-form h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .field {
+            height: 50px;
+            width: 100%;
+            display: flex;
+            position: relative;
+        }
+
+        .field:nth-child(2) {
+            margin-top: 20px;
+        }
+
+        .field input {
+            height: 100%;
+            width: 100%;
+            padding-left: 45px;
+            outline: none;
+            border: none;
+            font-size: 18px;
+            background: #dde1e7;
+            color: #595959;
+            border-radius: 25px;
+            box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #ffffff73;
+        }
+
+        .field input:focus {
+            box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #ffffff73;
+        }
+
+        .field span {
+            position: absolute;
+            color: #595959;
+            width: 50px;
+            line-height: 50px;
+        }
+
+        .field label {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 45px;
+            pointer-events: none;
+            color: #666666;
+        }
+
+        .field input:valid~label {
+            opacity: 0;
+        }
+
+        .login-form input[type=submit] {
+            background-color: #4CAF50;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 10px 10px 30px #d9d9d9, -10px -10px 30px #ffffff;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .login-form input[type=submit]:hover {
+            background-color: #3E8E41;
+        }
+
+        .error-message {
+            color: red;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-form">
+        <h1>Login</h1>
+        {{#if flash.error}}
+        <div class="error-message">{{flash.error}}</div>
+        {{/if}}
+        <form method="post" action="/login">
+            <div class="field">
+                <span class="fas fa-user"></span>
+                <input type="text" id="username" name="username" required>
+                <label for="username">Username</label>
+            </div>
+            <div class="field">
+                <span class="fas continue < fa-lock"></span>
+                <input type="password" id="password" name="password" required>
+                <label for="password">Password</label>
+            </div>
+            <input type="submit" value="Login">
+        </form>
+    </div>
