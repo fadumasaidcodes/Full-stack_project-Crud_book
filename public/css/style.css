@@ -171,6 +171,7 @@ main {
     color: #fff;
     transition: all 0.3s;
     margin-left: -20px;
+    height: 142vh;
 }
 
 #sidebar.active {
@@ -324,4 +325,7 @@ label:active:after {
   border-top: 20px solid transparent;
   border-bottom: 20px solid transparent;
   border-right: 20px solid #f5f5f5;
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  /* styles go here */
 }
