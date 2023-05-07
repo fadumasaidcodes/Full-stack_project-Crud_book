@@ -151,17 +151,6 @@ router.post('/login', async ctx => {
 
 
 
-router.get('/homes', async (ctx) => {
-  const user = ctx.session.user
-
-  // Check if user is logged in
-  if (!user) {
-    ctx.redirect('/login')
-    return
-  }
-
-  await ctx.render('homes', { username: user.username })
-})
 
 
 // Register route

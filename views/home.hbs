@@ -11,76 +11,69 @@
 
 <body>
 
-	<nav class="navbar navbar-expand-md bg-dark" style="background-color: #1c3048;">
-		<div class="container">
-			<a class="navbar-brand" href="#"><i class="fas fa-book"></i> Favourite Books</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-				<span class="navbar-toggler-icon" style="font-size: 0.50rem;"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="collapsibleNavbar">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item">
-						<a class="nav-link" href="#">Home</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Logout</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/form">Add a book</a>
-					</li>
-				</ul>
+	<div class="container-fluid">
+		<div class="row">
+			<!-- Sidebar -->
+			<div class="col-lg-3">
+				<nav id="sidebar">
+					<div class="sidebar-header">
+						<h3>Portfolio</h3>
+					</div>
+					<ul class="list-unstyled components">
+						<li class="active">
+							<a href="#"><i class="fas fa-home"></i> Home</a>
+						</li>
+						<li>
+							<a href="#about"><i class="fas fa-user"></i> About</a>
+						</li>
+						<li>
+							<a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+						</li>
+					</ul>
+				</nav>
 			</div>
+			<!-- Page Content -->
+			<div class="col-lg-9" id="content">
+				<div class="text-center">
+					<div class="image-container">
+						<img src="./images/book.png" class="rounded-top" alt="Your Image">
+						<div class="labels-container">
+							<div class="label-top">Bookshelf</div>
+							<div class="label-bottom">"A room without books is like a body without a soul." - Cicero
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Add your code here -->
+				<section class="card-container">
+					{{#if query}}
+					<p>Showing results for "{{query}}"</p>
+					{{/if}}
+					{{#each books}}
+					<div class="card">
+						<h2>{{this.title}}</h2>
+						<p>{{this.description}}</p>
+						<p><a href="/details/{{this.id}}">Read more</a></p>
+					</div>
+					{{/each}}
+				</section>
+				<!-- End of your code -->
+				<footer>
+				<p>&copy; 2023 My Favourite Books. All rights reserved.</p>
+			</footer>
+			</div>
+			
 		</div>
-		<input type="checkbox" id="switch" /><label for="switch">Toggle</label>
-	</nav>
-
-
-
-	<main>
-		<section class="card-container">
-			{{#if query}}
-			<p>Showing results for "{{query}}"</p>
-			{{/if}}
-			{{#each books}}
-			<div class="card">
-				<h2>{{this.title}}</h2>
-				<p>{{this.description}}</p>
-				<p><a href="/details/{{this.id}}">Read more</a></p>
-			</div>
-			{{/each}}
-		</section>
-		
-
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-		<script>
-			$(document).ready(function () {
-				var isDark = false; // Set isDark to false to start with the light mode
-
-				var themeButtonEl = $('#switch');
-				themeButtonEl.on('click', function () {
-					if (isDark) {
-						$('body').css({ 'background-color': '#FFFFFF', color: '#1a1a1a' });
-						$('.card').css({ 'background-color': '#FFFFFF', color: '#000000' });
-						isDark = false;
-					} else {
-						$('body').css({ 'background-color': '#1a1a1a', color: '#FFFFFF' });
-						$('.card').css({ 'background-color': '#1a1a1a', color: '#FFFFFF' });
-						isDark = true;
-					}
-				});
-			});
-		</script>
-
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
+	</div>
 	</main>
-	<footer>
-		<p>&copy; 2023 My Favourite Books. All rights reserved.</p>
-	</footer>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+
 </body>
 
 </html>
