@@ -42,12 +42,20 @@ open({
 
 // Redirect root route to login page
 router.get('/', async (ctx) => {
-  ctx.redirect('/login');
+  if (ctx.session.user) {
+    ctx.redirect('/home');
+  } else {
+    ctx.redirect('/login');
+  }
 });
 
 // Render login page
 router.get('/login', async (ctx) => {
-  await ctx.render('login');
+  if (ctx.session.user) {
+    ctx.redirect('/home');
+  } else {
+    await ctx.render('login');
+  }
 });
 
 // Handle login form submission
@@ -64,7 +72,7 @@ router.post('/login', async ctx => {
 
   // Check if user exists
   if (!user) {
-    ctx.status = 401
+    ctx.status = 301
     await ctx.render('login', { error: 'Invalid username or password' })
     return
   }
@@ -81,7 +89,7 @@ router.post('/login', async ctx => {
   ctx.session.user = { id: user.id, username: user.username }
 
   // Redirect to home page
-  ctx.redirect('/')
+  ctx.redirect('/home');
 });
 
 // Middleware to check if user is authenticated
@@ -92,6 +100,7 @@ const checkAuth = async (ctx, next) => {
   }
   await next()
 }
+
 
 // Home page
 router.get('/home', checkAuth, async ctx => {
