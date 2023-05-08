@@ -40,9 +40,9 @@ open({
   console.log(err.message)
 })
 
-router.get('/', async ctx => {
+router.get('/home', async ctx => {
   try {
-    console.log('/')
+    console.log('/home')
     const sql = 'SELECT id, title FROM books;'
     const data = await db.all(sql)
     console.log(data)
@@ -102,18 +102,25 @@ router.post('/details/:id/delete', async ctx => {
   await db.exec(sql)
   ctx.redirect('/')
 })
+// Redirect root route to login page
+router.get('/', async (ctx) => {
+  if (ctx.session.user) {
+    ctx.redirect('/home');
+  } else {
+    ctx.redirect('/login');
+  }
+});
 
-// Login route
+// Render login page
 router.get('/login', async (ctx) => {
-  await ctx.render('login')
-})
+  if (ctx.session.user) {
+    ctx.redirect('/home');
+  } else {
+    await ctx.render('login');
+  }
+});
 
-
-// Set up login route
-router.get('/login', async ctx => {
-  await ctx.render('login')
-})
-
+// Handle login form submission
 router.post('/login', async ctx => {
   // Retrieve user credentials from request body
   const { username, password } = ctx.request.body
@@ -144,10 +151,8 @@ router.post('/login', async ctx => {
   ctx.session.user = { id: user.id, username: user.username }
 
   // Redirect to home page
-  ctx.redirect('/')
-})
-
-
+  ctx.redirect('/home');
+});
 
 
 
