@@ -79,20 +79,20 @@ router.post('/add', async ctx => {
     ctx.body = err.message
   }
 });
+router.get('/details/:id/update', checkAuth, async ctx => {
+  const id = ctx.params.id
+  const data = await db.get(`SELECT * FROM books WHERE id=${id}`)
+  await ctx.render('update', {data})
+})
 
-router.get('/details/:id/update', async ctx => {
-	const id = ctx.params.id
-	const data = await db.get(`SELECT * FROM books WHERE id=${id}`)
-	await ctx.render('update', {data})
-  })
-  
-  router.post('/details/:id/update', async ctx => {
-	const id = ctx.params.id
-	const body = ctx.request.body
-	const sql = `UPDATE books SET title="${body.title}", isbn="${body.isbn}", description="${body.description}" WHERE id=${id};`
-	await db.exec(sql)
-	ctx.redirect(`/details/${id}`)
-  })
+router.post('/details/:id/update', checkAuth, async ctx => {
+  const id = ctx.params.id
+  const body = ctx.request.body
+  const sql = `UPDATE books SET title="${body.title}", isbn="${body.isbn}", description="${body.description}" WHERE id=${id};`
+  await db.exec(sql)
+  ctx.redirect(`/details/${id}`)
+})
+
   
   // Delete a book
 
@@ -154,6 +154,13 @@ router.post('/login', async ctx => {
   ctx.redirect('/home');
 });
 
+const checkAuth = (ctx, next) => {
+  if (!ctx.session.user) {
+    ctx.redirect('/login')
+    return
+  }
+  next()
+}
 
 
 
