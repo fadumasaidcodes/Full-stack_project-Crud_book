@@ -93,7 +93,11 @@ router.post('/login', async ctx => {
 });
 
 
-
+// Logout
+router.get('/logout', async ctx => {
+  ctx.session = null
+  ctx.redirect('/')
+})
 
 
 // Home page
