@@ -96,12 +96,13 @@ router.post('/details/:id/update', checkAuth, async ctx => {
   
   // Delete a book
 
-router.post('/details/:id/delete', async ctx => {
-  const id = ctx.params.id
-  const sql = `DELETE FROM books WHERE id=${id};`
-  await db.exec(sql)
-  ctx.redirect('/')
-})
+  router.post('/details/:id/delete', checkAuth, async ctx => {
+    const id = ctx.params.id
+    const sql = `DELETE FROM books WHERE id=${id};`
+    await db.exec(sql)
+    ctx.redirect('/')
+  })
+  
 // Redirect root route to login page
 router.get('/', async (ctx) => {
   if (ctx.session.user) {
