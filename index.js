@@ -72,7 +72,7 @@ router.post('/login', async ctx => {
 
   // Check if user exists
   if (!user) {
-    ctx.status = 301
+    ctx.status = 401
     await ctx.render('login', { error: 'Invalid username or password' })
     return
   }
@@ -92,18 +92,12 @@ router.post('/login', async ctx => {
   ctx.redirect('/home');
 });
 
-// Middleware to check if user is authenticated
-const checkAuth = async (ctx, next) => {
-  if (!ctx.session.user) {
-    ctx.redirect('/login')
-    return
-  }
-  await next()
-}
+
+
 
 
 // Home page
-router.get('/home', checkAuth, async ctx => {
+router.get('/home',  async ctx => {
   try {
     console.log('/home')
     const sql = 'SELECT id, title FROM books;'
@@ -116,7 +110,7 @@ router.get('/home', checkAuth, async ctx => {
 });
 
 // Book details page
-router.get('/details/:id', checkAuth, async ctx => {
+router.get('/details/:id',  async ctx => {
   try {
     console.log(ctx.params.id)
     const sql = `SELECT * FROM books WHERE id = ${ctx.params.id};`
@@ -129,13 +123,13 @@ router.get('/details/:id', checkAuth, async ctx => {
 });
 
 // Update book page
-router.get('/details/:id/update', checkAuth, async ctx => {
+router.get('/details/:id/update',  async ctx => {
   const id = ctx.params.id
   const data = await db.get(`SELECT * FROM books WHERE id=${id}`)
   await ctx.render('update', {data})
 })
 
-router.post('/details/:id/update', checkAuth, async ctx => {
+router.post('/details/:id/update', async ctx => {
   const id = ctx.params.id
   const body = ctx.request.body
   const sql = `UPDATE books SET title="${body.title}", isbn="${body.isbn}", description="${body.description}" WHERE id=${id};`
@@ -144,7 +138,7 @@ router.post('/details/:id/update', checkAuth, async ctx => {
 })
 
 // Delete book
-router.post('/details/:id/delete', checkAuth, async ctx => {
+router.post('/details/:id/delete',  async ctx => {
   const id = ctx.params.id
   const sql = `DELETE FROM books WHERE id=${id};`
   await db.exec(sql)
@@ -152,12 +146,12 @@ router.post('/details/:id/delete', checkAuth, async ctx => {
 })
 
 // Render form
-router.get('/form', checkAuth, async ctx => {
+router.get('/form', async ctx => {
   await ctx.render('form');
 });
 
 // Handle add form submission
-router.post('/add', checkAuth, async ctx => {
+router.post('/add',  async ctx => {
   try {
     const { title, isbn, description } = ctx.request.body
     const sql = `INSERT INTO books(title, isbn, description) 
