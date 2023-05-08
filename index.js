@@ -40,88 +40,14 @@ open({
   console.log(err.message)
 })
 
-router.get('/home', async ctx => {
-  try {
-    console.log('/home')
-    const sql = 'SELECT id, title FROM books;'
-    const data = await db.all(sql)
-    console.log(data)
-    await ctx.render('home', {title: 'Favourite Books', books: data})
-  } catch(err) {
-    ctx.body = err.message
-  }
-})
-
-router.get('/details/:id', async ctx => {
-  try {
-    console.log(ctx.params.id)
-    const sql = `SELECT * FROM books WHERE id = ${ctx.params.id};`
-    const data = await db.get(sql)
-    console.log(data)
-    await ctx.render('details', data)
-  } catch(err) {
-    ctx.body = err.message
-  }
-});
-
-// Render form
-router.get('/form', checkAuth, async ctx => {
-  await ctx.render('form');
-});
-
-// Handle add form submission
-router.post('/add', checkAuth, async ctx => {
-  try {
-    const { title, isbn, description } = ctx.request.body
-    const sql = `INSERT INTO books(title, isbn, description) 
-      VALUES("${title}", "${isbn}", "${description}");`
-    await db.exec(sql)
-    ctx.redirect('/')
-  } catch(err) {
-    ctx.body = err.message
-  }
-});
-
-router.get('/details/:id/update', checkAuth, async ctx => {
-  const id = ctx.params.id
-  const data = await db.get(`SELECT * FROM books WHERE id=${id}`)
-  await ctx.render('update', {data})
-})
-
-router.post('/details/:id/update', checkAuth, async ctx => {
-  const id = ctx.params.id
-  const body = ctx.request.body
-  const sql = `UPDATE books SET title="${body.title}", isbn="${body.isbn}", description="${body.description}" WHERE id=${id};`
-  await db.exec(sql)
-  ctx.redirect(`/details/${id}`)
-})
-
-  
-  // Delete a book
-
-  router.post('/details/:id/delete', checkAuth, async ctx => {
-    const id = ctx.params.id
-    const sql = `DELETE FROM books WHERE id=${id};`
-    await db.exec(sql)
-    ctx.redirect('/')
-  })
-  
 // Redirect root route to login page
 router.get('/', async (ctx) => {
-  if (ctx.session.user) {
-    ctx.redirect('/home');
-  } else {
-    ctx.redirect('/login');
-  }
+  ctx.redirect('/login');
 });
 
 // Render login page
 router.get('/login', async (ctx) => {
-  if (ctx.session.user) {
-    ctx.redirect('/home');
-  } else {
-    await ctx.render('login');
-  }
+  await ctx.render('login');
 });
 
 // Handle login form submission
@@ -155,19 +81,84 @@ router.post('/login', async ctx => {
   ctx.session.user = { id: user.id, username: user.username }
 
   // Redirect to home page
-  ctx.redirect('/home');
+  ctx.redirect('/')
 });
 
-const checkAuth = (ctx, next) => {
+// Middleware to check if user is authenticated
+const checkAuth = async (ctx, next) => {
   if (!ctx.session.user) {
     ctx.redirect('/login')
     return
   }
-  next()
+  await next()
 }
 
+// Home page
+router.get('/home', checkAuth, async ctx => {
+  try {
+    console.log('/home')
+    const sql = 'SELECT id, title FROM books;'
+    const data = await db.all(sql)
+    console.log(data)
+    await ctx.render('home', {title: 'Favourite Books', books: data})
+  } catch(err) {
+    ctx.body = err.message
+  }
+});
 
+// Book details page
+router.get('/details/:id', checkAuth, async ctx => {
+  try {
+    console.log(ctx.params.id)
+    const sql = `SELECT * FROM books WHERE id = ${ctx.params.id};`
+    const data = await db.get(sql)
+    console.log(data)
+    await ctx.render('details', data)
+  } catch(err) {
+    ctx.body = err.message
+  }
+});
 
+// Update book page
+router.get('/details/:id/update', checkAuth, async ctx => {
+  const id = ctx.params.id
+  const data = await db.get(`SELECT * FROM books WHERE id=${id}`)
+  await ctx.render('update', {data})
+})
+
+router.post('/details/:id/update', checkAuth, async ctx => {
+  const id = ctx.params.id
+  const body = ctx.request.body
+  const sql = `UPDATE books SET title="${body.title}", isbn="${body.isbn}", description="${body.description}" WHERE id=${id};`
+  await db.exec(sql)
+  ctx.redirect(`/details/${id}`)
+})
+
+// Delete book
+router.post('/details/:id/delete', checkAuth, async ctx => {
+  const id = ctx.params.id
+  const sql = `DELETE FROM books WHERE id=${id};`
+  await db.exec(sql)
+  ctx.redirect('/')
+})
+
+// Render form
+router.get('/form', checkAuth, async ctx => {
+  await ctx.render('form');
+});
+
+// Handle add form submission
+router.post('/add', checkAuth, async ctx => {
+  try {
+    const { title, isbn, description } = ctx.request.body
+    const sql = `INSERT INTO books(title, isbn, description) 
+      VALUES("${title}", "${isbn}", "${description}");`
+    await db.exec(sql)
+    ctx.redirect('/')
+  } catch(err) {
+    ctx.body = err.message
+  }
+});
 
 // Register route
 router.get('/register', async (ctx) => {
