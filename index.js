@@ -64,21 +64,24 @@ router.get('/details/:id', async ctx => {
   }
 });
 
-router.get('/form', async ctx => await ctx.render('form'));
+// Render form
+router.get('/form', checkAuth, async ctx => {
+  await ctx.render('form');
+});
 
-router.post('/add', async ctx => {
+// Handle add form submission
+router.post('/add', checkAuth, async ctx => {
   try {
-    console.log(ctx.request.body)
-    const body = ctx.request.body
+    const { title, isbn, description } = ctx.request.body
     const sql = `INSERT INTO books(title, isbn, description) 
-      VALUES("${body.title}", "${body.isbn}", "${body.description}");`
-    console.log(sql)
+      VALUES("${title}", "${isbn}", "${description}");`
     await db.exec(sql)
     ctx.redirect('/')
   } catch(err) {
     ctx.body = err.message
   }
 });
+
 router.get('/details/:id/update', checkAuth, async ctx => {
   const id = ctx.params.id
   const data = await db.get(`SELECT * FROM books WHERE id=${id}`)
