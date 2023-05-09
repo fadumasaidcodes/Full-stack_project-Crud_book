@@ -9,20 +9,30 @@
 body {
   font-family: Arial, sans-serif;
   font-size: 16px;
-  background-color: #0080ff;
 }
 
 /* Header styles */
-.container-fluid {
-  background-color: #267471
+.intro-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(210, 210, 210, 0.8)), url(../images/BookStack-Magic.webp);
+  background-color: #444;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: 50% 50%;
+  margin-bottom: 20px;
+  color: white !important;
 }
+
 header {
 
   color: #fff;
   display: flex;
   align-items: center;
   padding: 10px 20px;
-  background-color: #0080ff;
 }
 
 .logo {
@@ -95,7 +105,6 @@ main {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 20px;
-  margin-top:30px;
 }
 
 .card {
@@ -104,7 +113,6 @@ main {
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(246, 221, 221, 0.855);
   border-radius: 5px;
-
 }
 
 .card h2 {
@@ -127,104 +135,6 @@ main {
   text-decoration: underline;
 }
 
-
-   /* Required for sidebar to slide out */
-   .wrapper {
-    display: flex;
-    width: 100%;
-}/* Top image CSS */
-.rounded-top {
-  width: 100%;
-  height: 45vh;
-  margin-left: -70px;
-}
-
-.image-container {
-  position: relative;
-}
-
-.rounded-top .labels-container {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 10px;
-}
-
-.rounded-top .label-top {
-  display: inline-block;
-  font-weight: bold;
-  font-size: 24px;
-}
-
-.rounded-top .label-bottom {
-  font-size: 18px;
-}
-
-
-
-#sidebar {
-    min-width: 250px;
-    max-width: 250px;
-    min-height: 100vh;
-    background: #343a40;
-    color: #fff;
-    transition: all 0.3s;
-    margin-left: -20px;
-    height: 142vh;
-}
-
-#sidebar.active {
-    margin-left: -250px;
-}
-
-#sidebar .sidebar-header {
-    padding: 20px;
-    background: #212529;
-}
-
-#sidebar ul.components {
-    padding: 20px 0;
-}
-
-#sidebar ul li {
-    padding: 10px;
-    font-size: 1.1em;
-    display: block;
-}
-
-#sidebar ul li a {
-    color: #fff;
-}
-
-#sidebar ul li.active>a,
-a[aria-expanded="true"] {
-    color: #18bc9c;
-    background: #fff;
-}
-
-a[data-toggle="collapse"] {
-    position: relative;
-}
-
-a[aria-expanded="false"]::before,
-a[aria-expanded="true"]::before {
-    content: '\f0da';
-    display: block;
-    position: absolute;
-    right: 20px;
-    font-family: 'FontAwesome';
-    font-size: 0.9em;
-}
-
-a[aria-expanded="true"]::before {
-    content: '\f0d7';
-}
-
-/* Extra styling */
-#content {
-    padding: 20px;
-}
 
 /* Footer styles */
 
@@ -325,7 +235,4 @@ label:active:after {
   border-top: 20px solid transparent;
   border-bottom: 20px solid transparent;
   border-right: 20px solid #f5f5f5;
-}
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  /* styles go here */
 }

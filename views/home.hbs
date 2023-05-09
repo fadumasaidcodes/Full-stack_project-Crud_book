@@ -11,89 +11,158 @@
 
 <body>
 
-	<div class="container-fluid">
-		<div class="row">
-			<!-- Sidebar -->
-			<div class="col-lg-3">
-				<nav id="sidebar">
-					<div class="sidebar-header">
-						<h3>Bookshelf</h3>
-					</div>
-					<ul class="list-unstyled components">
-						<li class="active">
-							<a href="#"><i class="fas fa-home"></i> Home</a>
-						</li>
-						<li>
-							<a href="/form"><i class="fas fa-book"></i> Add a book</a>
-						</li>
-						<li>
-							<a href="/logout"><i class="fas fa-envelope"></i> logout</a>
-						</li>
-					</ul>
-				</nav>
+	<nav class="navbar navbar-expand-md bg-dark" style="background-color: #1c3048;">
+		<div class="container">
+			<a class="navbar-brand" href="#"><i class="fas fa-book"></i> Favourite Books</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon" style="font-size: 0.50rem;"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="#">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/logout">Logout</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/form">Add a book</a>
+					</li>
+				</ul>
 			</div>
-			<!-- Page Content -->
-			<div class="col-lg-9" id="content">
-				<div class="text-center">
-					<div style="position: relative;">
-						<img src="./images/book.png" class="rounded-top" alt="Your Image"
-							style="width: 100%; height: 50vh;">
-						<div
-							style="position: absolute; top: 123px; left: 300px;  background-color: rgba(255, 255, 255, 0.8); padding: 10px;">
-							<div style="font-weight: bold; font-size: 24px;">Bookshelf</div>
-							<div style="font-size: 18px;">"A room without books is like a body without a soul." - Cicero
-							</div>
+		</div>
+		<input type="checkbox" id="switch" /><label for="switch">Toggle</label>
+	</nav>
+
+
+
+	<main>
+		<section class="intro-section bg-light py-5">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h2 class="text-center mb-4">Welcome to My Favourite Books</h2>
+						<p class="lead text-center mb-4">Discover your next favorite book with us. Our extensive library
+							of books is sure to have something that will captivate and inspire you. Start exploring
+							today!</p>
+						<div class="text-center">
+							<a href="#" class="btn btn-primary">Explore Books</a>
 						</div>
 					</div>
 				</div>
-				<!-- Add your code here -->
-				<section class="card-container">
-					{{#if query}}
-					<p>Showing results for "{{query}}"</p>
-					{{/if}}
-					{{#each books}}
-					<div class="card">
-						<h2>{{this.title}}</h2>
-						<p>{{this.description}}</p>
-						<p><a href="/details/{{this.id}}">Read more</a></p>
-					</div>
-					{{/each}}
-				</section>
-				<!-- End of your code -->
-				<footer class="bg-dark text-white py-3">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <p>&copy; 2023 My Favourite Books. All rights reserved.</p>
-      </div>
-      <div class="col-md-6">
-        <ul class="list-inline mb-0 float-end">
-          <li class="list-inline-item"><a href="#"><i class="fab fa-facebook"></i></a></li>
-          <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-          <li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
-          <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <p class="text-muted mb-0">Contact us: email@example.com | +1 (555) 123-4567</p>
-      </div>
-    </div>
-  </div>
-</footer>
+			</div>
+		</section>
 
 
+		<section class="card-container">
+			{{#if query}}
+			<p>Showing results for "{{query}}"</p>
+			{{/if}}
+			{{#each books}}
+			<div class="card">
+				<h2>{{this.title}}</h2>
+				<p>{{this.description}}</p>
+				<p><a href="/details/{{this.id}}">Read more</a></p>
+			</div>
+			{{/each}}
+		</section>
+
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+		<script>
+			$(document).ready(function () {
+				var isDark = false; // Set isDark to false to start with the light mode
+
+				var themeButtonEl = $('#switch');
+				themeButtonEl.on('click', function () {
+					if (isDark) {
+						$('body').css({ 'background-color': '#FFFFFF', color: '#1a1a1a' });
+						$('.card').css({ 'background-color': '#FFFFFF', color: '#000000' });
+						isDark = false;
+					} else {
+						$('body').css({ 'background-color': '#1a1a1a', color: '#FFFFFF' });
+						$('.card').css({ 'background-color': '#1a1a1a', color: '#FFFFFF' });
+						isDark = true;
+					}
+				});
+			});
+		</script>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+	</main>
+	<footer class="footer bg-dark">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 text-center text-md-left mb-4 mb-md-0">
+					<h5 class="text-uppercase mb-3 text-white" id="Contact">Fellow Me </h5>
+					<p class="text-muted mb-4">I am a highly skilled and motivated individual with 3 years of experience
+						in
+						software develpment. I am currently seeking new opportunities and am available for hire. I am
+						confident in
+						my ability to bring value to any team and would love to discuss potential opportunities with
+						your company.
+					</p>
+					<ul class="list-inline mb-0">
+						<li class="list-inline-item mr-3">
+							<a href="https://www.linkedin.com/in/faduma-ibrahim-msc-230a5387/" class="text-white">
+								<i class="fab fa-linkedin fa-2x"></i>
+							</a>
+						</li>
+						<li class="list-inline-item mr-3">
+							<a href="#" class="text-white">
+								<i class="fab fa-twitter fa-2x"></i>
+							</a>
+						</li>
+						<li class="list-inline-item mr-3">
+							<a href="https://github.com/fadumasaidcodes" class="text-white">
+								<i class="fab fa-github fa-2x"></i>
+							</a>
+						</li>
+
+						<li class="list-inline-item">
+							<a href="#" class="text-white">
+								<i class="fab fa-instagram fa-2x"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-6 text-center text-md-right">
+					<h5 class="text-uppercase mb-3 text-white">Contact Me</h5>
+					<ul class="list-unstyled mb-0">
+						<li class="mb-2">
+							<i class="fas fa-map-marker-alt fa-lg text-primary mr-3"></i>
+							<span class="text-muted">123 Main Street, California, USA</span>
+						</li>
+						<li class="mb-2">
+							<i class="fas fa-envelope fa-lg text-primary mr-3"></i>
+							<span class="text-muted">info@california.com</span>
+						</li>
+						<li class="mb-2">
+							<i class="fab fa-github fa-lg text-primary mr-3"></i>
+							<a href="https://github.com/fadumasaidcodes" target="_blank"
+								rel="noopener noreferrer">fadumasaidcodes</a>
+						</li>
+
+						<li class="mb-2">
+							<i class="fas fa-phone fa-lg text-primary mr-3"></i>
+							<span class="text-muted">+1 (800) CALI-FORNIA</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row mt-4">
+				<div class="col text-center">
+					<hr class="border-light">
+					<p class="text-white">Favourite Books&copy; 2023</p>
+				</div>
+			</div>
 		</div>
-	</div>
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
-
-
+	</footer>
 </body>
 
 </html>
