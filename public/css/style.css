@@ -44,6 +44,13 @@ header {
   font-size: 1.5em;
   margin-right: 10px;
 }
+.animate-section .lead {
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: .15em;
+  animation: typing 5s steps(40, end), blink-caret .75s step-end infinite;
+}
 
 .logo h1 {
   font-size: 1.5em;

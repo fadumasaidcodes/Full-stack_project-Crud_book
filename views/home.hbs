@@ -43,10 +43,19 @@
 					<div class="col-md-12">
 						<h2 class="text-center mb-4">Welcome to My Favourite Books</h2>
 						<p class="lead text-center mb-4">Discover your next favorite book with us. Our extensive library
-							of books is sure to have something that will captivate and inspire you. Start exploring
+							of books is sure to have something that will captivate and inspire you. Press teh add button or scroll down to our list of books.
 							today!</p>
 						<div class="text-center">
-							<a href="#" class="btn btn-primary">Explore Books</a>
+							<a href="/form" class="btn btn-primary">
+								<i class="fas fa-plus-circle"></i> Add Book
+							</a>
+						</div>
+						<div class="text-center mt-4">
+							<a href="#book-list" class="btn btn-link scroll-down">
+								<i class="fas fa-chevron-down fa-3x"></i>
+								<br>
+								<span>Scroll Down</span>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -54,6 +63,15 @@
 		</section>
 
 
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h2 class="text-center mb-4">List of Books</h2>
+					</div>
+				</div>
+			</div>
+		</section>
 		<section class="card-container">
 			{{#if query}}
 			<p>Showing results for "{{query}}"</p>
