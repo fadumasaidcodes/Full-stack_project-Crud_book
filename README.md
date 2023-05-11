@@ -1,28 +1,37 @@
 [Live](https://book-tg75.onrender.com/)[Note: the website may take a few seconds to load as rendering can be slow].
-# Bookshop Web Application
+# Bookshop Web Application Description
 
-The Bookshop Web Application is a full stack web application built using Node.js, Koa, Handlebars (hbs) and SQL that enables users to view, add, update and delete books from the bookshop. It is designed to provide an easy-to-use interface that allows users to manage their books and book-related information effectively. The application stores data such as user information and book details in a database, making it easy to retrieve and update information.
+The Bookshop Web Application follows a CRUD (Create, Read, Update, Delete) style for managing books. 
 
-## Project description 
-```
-* This is a Node.js application.
-* It uses the Koa web framework to handle HTTP requests and responses.
-* It uses several third-party modules, including:
-- bcrypt
-- koa-session
-- koa-router
-- koa-static
-- koa-hbs-renderer
-- koa-bodyparser
-- sqlite3
-- The application creates an HTTP server that listens on port 8080.
-- When the server receives an HTTP request, 
-it uses the Koa router to match the request to a handler function.
-- The handler function interacts with a SQLite database 
-to perform CRUD operations on a books table.
+Here's an explanation of how each operation is supported:
 
-```
-The Bookshop Web Application has several routes, including:
+ ### Create:
+
+- Users can add new books to the bookshop by filling out a form. The application provides a route, '/form', which displays a form for adding a new book.
+- Upon submitting the form, the application processes the data and adds the book to the database using the 'POST /add' route.
+
+ ### Read:
+
+- Users can view a list of books available in the bookshop. The application provides a route, '/', which displays a homepage with a login form.
+- Once logged in, the user is redirected to the home page ('/home'), where they can view the list of books.
+- Clicking on a book title in the list redirects the user to the '/details/:id' route, which displays the details of that specific book.
+
+ ###  Update:
+
+- Users can update the information of a book. On the book's details page ('/details/:id'), there should be an "Update" or "Edit" button.
+- Clicking on the button will take the user to the '/details/:id/update' route, where they can modify the book's information using a form.
+- Upon submitting the form, the application processes the updated data and updates the book in the database using the 'POST /details/:id/update' route.
+
+ ### Delete:
+
+- Users can delete a book from the bookshop. On the book's details page ('/details/:id'), there should be a "Delete" or "Remove" button.
+- Clicking on the button will prompt a confirmation message to ensure the user wants to delete the book.
+- If confirmed, the application processes the request and deletes the book from the database using the 'GET /details/:id/delete' route.
+
+The Bookshop Web Application utilizes Node.js, Koa, Handlebars (hbs), and SQL to implement these CRUD operations, enabling users to effectively manage their books and book-related information. The use of a database ensures easy retrieval and updating of information.
+
+
+ ## The HTTP and Routes:
 
 - GET '/' - displays the homepage, which includes a login form
 - GET '/details/:id' - displays details for a specific book
@@ -52,11 +61,15 @@ The Bookshop Web Application has the following user stories:
 ## Technologies Used
 The Bookshop Web Application was built using the following technologies:
 
-* Node.js
-* Koa
-* SQLite3
-* Handlebars
-* CSS
+- Node.js: The application is built using Node.js, a JavaScript runtime environment.
+- Koa: It uses the Koa web framework, which is a lightweight framework for handling HTTP requests and responses.
+- bcrypt: A module used for password hashing and comparison. It helps secure user passwords by applying one-way hashing algorithms.
+- koa-session: A middleware that enables session management in Koa applications. It provides session-based authentication and session data storage.
+- koa-router: A module that handles routing in Koa applications. It matches incoming requests to specific routes and executes corresponding handler functions.
+- koa-static: A middleware that serves static files, such as CSS and client-side JavaScript, in Koa applications.
+- koa-hbs-renderer: A module that integrates Handlebars (hbs) as the templating engine in Koa applications. Handlebars allows generating dynamic HTML templates.
+- koa-bodyparser: A middleware that parses the request body and makes it available in Koa applications. It allows extracting data from forms or JSON payloads.
+- sqlite3: A module used to interact with SQLite, a lightweight relational database. It enables the application to perform CRUD operations on the books table.
 
 ## Table of Contents
 - Installation
