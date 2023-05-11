@@ -1,55 +1,52 @@
-#!/usr/bin/env node
-
-'use strict'
-
-const Koa = require('koa')
-const bcrypt = require('bcrypt')
+// Import required modules
+const Koa = require('koa');
+const bcrypt = require('bcrypt');
 const session = require('koa-session');
-const Router = require('koa-router')
-const stat = require('koa-static')
-const handlebars = require('koa-hbs-renderer')
-const bodyParser = require('koa-bodyparser')
-const crypto = require('crypto') // Add this line to import the crypto module
+const Router = require('koa-router');
+const stat = require('koa-static');
+const handlebars = require('koa-hbs-renderer');
+const bodyParser = require('koa-bodyparser');
+const crypto = require('crypto');
+const sqlite3 = require('sqlite3');
+const { open } = require('sqlite');
 
-const sqlite3 = require('sqlite3')
-const { open } = require('sqlite')
+// Create Koa app
+const app = new Koa();
+const router = new Router();
 
-const app = new Koa()
-const router = new Router()
-app.use(stat('public'))
-app.use(bodyParser())
-app.use(handlebars({ paths: { views: `${__dirname}/views` } }))
-app.use(router.routes())
-app.use(bodyParser())
-const sessionSecretKey = crypto.randomBytes(32).toString('hex');
-
-// Initialize session middleware
-app.keys = [sessionSecretKey];
+// Configure middleware
+app.use(stat('public'));
+app.use(bodyParser());
+app.use(handlebars({ paths: { views: `${__dirname}/views` } }));
+app.keys = [crypto.randomBytes(32).toString('hex')];
 app.use(session(app));
-const port = 8080
-let db = {}
+app.use(router.routes());
 
-// Connect to Sqlite DB
+// Connect to SQLite DB
+let db;
 open({
   filename: './bookshop.db',
-  driver: sqlite3.Database
-}).then((DB) => {
-  db = DB
-  console.log('Database connection is ready')
-}).catch((err) => {
-  console.log(err.message)
+  driver: sqlite3.Database,
 })
+  .then((database) => {
+    db = database;
+    console.log('Database connection is ready');
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
 
-// Redirect root route to login page
-router.get('/', async (ctx) => {
-  if (ctx.session.user) {
-    ctx.redirect('/home');
-  } else {
-    ctx.redirect('/login');
+// Define the requireLogin middleware
+const requireLogin = async (ctx, next) => {
+  if (ctx.path !== '/login' && ctx.path !== '/register' && !ctx.session.user) {
+    return ctx.redirect('/login');
   }
+  await next();
+};
+router.get('/', async (ctx) => {
+  ctx.redirect('/login');
 });
 
-// Render login page
 router.get('/login', async (ctx) => {
   if (ctx.session.user) {
     ctx.redirect('/home');
@@ -59,118 +56,51 @@ router.get('/login', async (ctx) => {
 });
 
 // Handle login form submission
-router.post('/login', async ctx => {
+router.post('/login', async (ctx) => {
   // Retrieve user credentials from request body
-  const { username, password } = ctx.request.body
+  const { username, password } = ctx.request.body;
 
-  // Retrieve user from database
-  const db = await open({
-    filename: './bookshop.db',
-    driver: sqlite3.Database
-  })
-  const user = await db.get('SELECT * FROM users WHERE username = ?', username)
-
-  // Check if user exists
-  if (!user) {
-    ctx.status = 401
-    await ctx.render('login', { error: 'Invalid username or password' })
-    return
-  }
-
-  // Check if password is correct
-  const passwordIsValid = await bcrypt.compare(password, user.password)
-  if (!passwordIsValid) {
-    ctx.status = 401
-    await ctx.render('login', { error: 'Invalid username or password' })
-    return
-  }
-
-  // Set session data
-  ctx.session.user = { id: user.id, username: user.username }
-
-  // Redirect to home page
-  ctx.redirect('/home');
-});
-
-
-// Logout
-router.get('/logout', async ctx => {
-  ctx.session = null
-  ctx.redirect('/')
-})
-
-
-// Home page
-router.get('/home',  async ctx => {
   try {
-    console.log('/home')
-    const sql = 'SELECT id, title FROM books;'
-    const data = await db.all(sql)
-    console.log(data)
-    await ctx.render('home', {title: 'Favourite Books', books: data})
-  } catch(err) {
-    ctx.body = err.message
+    const user = await db.get('SELECT * FROM users WHERE username = ?', username);
+
+    if (!user) {
+      ctx.status = 401;
+      console.log('User does not exist');
+      await ctx.render('login', { error: 'Invalid username or password' });
+      return;
+    }
+
+    const passwordIsValid = await bcrypt.compare(password, user.password);
+
+    if (!passwordIsValid) {
+      ctx.status = 401;
+      console.log('Invalid password');
+      await ctx.render('login', { error: 'Invalid username or password' });
+      return;
+    }
+
+    ctx.session.user = { id: user.id, username: user.username };
+
+    console.log('Login successful');
+
+    ctx.redirect('/home');
+  } catch (err) {
+    console.error('Login error:', err);
+    ctx.status = 500;
+    await ctx.render('login', { error: 'An error occurred during login' });
   }
 });
 
-// Book details page
-router.get('/details/:id',  async ctx => {
-  try {
-    console.log(ctx.params.id)
-    const sql = `SELECT * FROM books WHERE id = ${ctx.params.id};`
-    const data = await db.get(sql)
-    console.log(data)
-    await ctx.render('details', data)
-  } catch(err) {
-    ctx.body = err.message
-  }
+// Render registration page
+router.get('/register', async (ctx) => {
+  await ctx.render('register');
 });
 
-// Update book page
-router.get('/details/:id/update',  async ctx => {
-  const id = ctx.params.id
-  const data = await db.get(`SELECT * FROM books WHERE id=${id}`)
-  await ctx.render('update', {data})
-})
-
-router.post('/details/:id/update', async ctx => {
-  const id = ctx.params.id
-  const body = ctx.request.body
-  const sql = `UPDATE books SET title="${body.title}", isbn="${body.isbn}", description="${body.description}" WHERE id=${id};`
-  await db.exec(sql)
-  ctx.redirect(`/details/${id}`)
-})
-
-// Delete book
-router.post('/details/:id/delete',  async ctx => {
-  const id = ctx.params.id
-  const sql = `DELETE FROM books WHERE id=${id};`
-  await db.exec(sql)
-  ctx.redirect('/')
-})
-
-// Render form
-router.get('/form', async ctx => {
-  await ctx.render('form');
-});
-
-// Handle add form submission
-router.post('/add',  async ctx => {
-  try {
-    const { title, isbn, description } = ctx.request.body
-    const sql = `INSERT INTO books(title, isbn, description) 
-      VALUES("${title}", "${isbn}", "${description}");`
-    await db.exec(sql)
-    ctx.redirect('/')
-  } catch(err) {
-    ctx.body = err.message
-  }
-});
 
 // Register route
 router.get('/register', async (ctx) => {
   await ctx.render('register')
-})
+});
 
 router.post('/register', async (ctx) => {
   const { username, password, confirmPassword } = ctx.request.body
@@ -213,6 +143,82 @@ router.post('/register', async (ctx) => {
     ctx.redirect('/register')
     return
   }
+});
+
+// Logout
+router.get('/logout', async ctx => {
+  ctx.session = null
+  ctx.redirect('/')
+});
+
+
+router.get('/home', requireLogin, async ctx => {
+  try {
+    console.log('/home')
+    const sql = 'SELECT id, title FROM books;'
+    const data = await db.all(sql)
+    console.log(data)
+    await ctx.render('home', {title: 'Favourite Books', books: data})
+  } catch(err) {
+    ctx.body = err.message
+  }
+});
+
+// Book details page
+router.get('/details/:id', requireLogin, async ctx => {
+  try {
+    console.log(ctx.params.id)
+    const sql = `SELECT * FROM books WHERE id = ${ctx.params.id};`
+    const data = await db.get(sql)
+    console.log(data)
+    await ctx.render('details', data)
+  } catch(err) {
+    ctx.body = err.message
+  }
+});
+
+// Update book page
+router.get('/details/:id/update', requireLogin, async ctx => {
+  const id = ctx.params.id
+  const data = await db.get(`SELECT * FROM books WHERE id=${id}`)
+  await ctx.render('update', {data})
 })
 
-module.exports = app.listen(port, () => console.log(`listening on port ${port}`))
+router.post('/details/:id/update',requireLogin, async ctx => {
+  const id = ctx.params.id
+  const body = ctx.request.body
+  const sql = `UPDATE books SET title="${body.title}", isbn="${body.isbn}", description="${body.description}" WHERE id=${id};`
+  await db.exec(sql)
+  ctx.redirect(`/details/${id}`)
+})
+
+// Delete book
+router.post('/details/:id/delete', requireLogin, async ctx => {
+  const id = ctx.params.id
+  const sql = `DELETE FROM books WHERE id=${id};`
+  await db.exec(sql)
+  ctx.redirect('/')
+})
+
+// Render form
+router.get('/form',requireLogin, async ctx => {
+  await ctx.render('form');
+});
+
+// Handle add form submission
+router.post('/add', requireLogin, async ctx => {
+  try {
+    const { title, isbn, description } = ctx.request.body
+    const sql = `INSERT INTO books(title, isbn, description) 
+      VALUES("${title}", "${isbn}", "${description}");`
+    await db.exec(sql)
+    ctx.redirect('/')
+  } catch(err) {
+    ctx.body = err.message
+  }
+});
+
+
+const port = 8080; // Define the port number here
+
+module.exports = app.listen(port, () => console.log(`listening on port ${port}`));

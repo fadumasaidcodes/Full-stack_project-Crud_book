@@ -22,21 +22,21 @@ it uses the Koa router to match the request to a handler function.
 to perform CRUD operations on a books table.
 
 ```
-The application has several routes, including:
+The Bookshop Web Application has several routes, including:
 
-- GET '/' - displays a list of books
+- GET '/' - displays the homepage, which includes a login form
 - GET '/details/:id' - displays details for a specific book
-- GET '/form' - displays a form to add a new book
-- POST '/add' - adds a new book to the database
-- GET '/details/:id/update' - displays a form to update a book
-- POST '/details/:id/update' - updates a book in the database
-- GET '/details/:id/delete' - deletes a book from the database
+- GET '/form' - displays a form to add a new book (accessible only for logged-in users)
+- POST '/add' - adds a new book to the database (accessible only for logged-in users)
+- GET '/details/:id/update' - displays a form to update a book (accessible only for logged-in users)
+- POST '/details/:id/update' - updates a book in the database (accessible only for logged-in users)
+- GET '/details/:id/delete' - deletes a book from the database (accessible only for logged-in users)
 - GET '/login' - displays a login form
 - POST '/login' - authenticates a user and sets a session
-- GET '/homes' - displays a homes page for a logged-in user
+- GET '/home' - displays a home page for a logged-in user (accessible only for logged-in users)
 - GET '/register' - displays a registration form
 - POST '/register' - registers a new user in the database
-- The application uses bcrypt to hash and compare passwords, and uses the koa-session middleware to manage user sessions. The crypto module is used to generate a session secret key.
+- The application uses bcrypt to hash and compare passwords, and it utilizes the koa-session middleware to manage user sessions. The crypto module is used to generate a session secret key.
 
 ## User Stories
 The Bookshop Web Application has the following user stories:
@@ -72,33 +72,34 @@ To install the Bookshop Web Application, please follow these steps:
 - Clone the repository to your local machine.
 - Open the terminal and navigate to the project directory.
 - Run npm install to install the dependencies.
-- Run npm run dev to start the server.
+
 
 # Usage
 To use the Bookshop Web Application, please follow these steps:
 
-- Navigate to http://localhost:8080 in your web browser.
-- If you are a new user, click on the "register" button and fill out the registration form with your username, password, and confirm password.
-- If you are a registered user, click on the "login" button and provide your username and password.
-- Once logged in, you will be able to view a list of books available in the bookshop.
-- To view more details about a book, click on the book title in the list.
-- To add a new book, click on the "add book" button and fill out the add book form with the book title, ISBN, and description.
-- To update a book, click on the "update" button next to a book title in the list of books available in the bookshop.
-- To delete a book, click on the "delete" button next to a book title in the list of books available in the bookshop.
+#### To access the application:
 
-* Instructions on how to use the application, including:
+- Open the Bookshop Web Application by navigating to https://book-tg75.onrender.com/. The homepage with the login form will be displayed.
 
-- To access the home page, go to https://book-tg75.onrender.com/ (Note: the website may take a few seconds to load as rendering can be slow)
+- If you are a new user, click on the "Register" link to access the registration form. Fill out the form with your desired username, password, and any other required information.
 
-- To view more details about a book, append "/details/<book_id>" to the URL. For example, to view details about book with id=1, go to https://book-tg75.onrender.com/details/2.
+- If you are a registered user, enter your username and password in the login form on the homepage.
 
-- To log in to your account, go to https://book-tg75.onrender.com/login and enter your credentials.
+- After successfully logging in, you will be redirected to the home page ('/home').
 
-- To register a new account, go to https://book-tg75.onrender.com/register and fill out the registration form.
+- From the home page, you can view a list of books available in the bookshop.
 
-- To update your account information, go to https://book-tg75.onrender.com/update and enter your updated information.
+- Clicking on a book title in the list will take you to the details page for that specific book ('/details/:id').
 
-- To add a new book, go to https://book-tg75.onrender.com/form and fill out the book information form.
+- If you are a registered user, you can add a new book by clicking on the "Add Book" button, which will take you to the '/form' route. Fill out the book information form and submit it to add the book to the database.
+
+- On the details page, there should be buttons or links specifically for updating and deleting the book. Look for an "Update" or "Edit" button/link to update the book's information, and a "Delete" button/link to delete the book.
+
+- To update the book, click on the "Update" or "Edit" button/link on the details page. This will take you to the '/details/:id/update' route, where you can modify the book's information, such as the title, ISBN, or description. Once you have made the desired changes, you can submit the updated information.
+
+- To delete the book, click on the "Delete" button/link on the details page. This will prompt a confirmation message to ensure you want to delete the book. If you confirm the deletion, the book will be permanently removed from the database.
+
+* Remember, certain routes and actions are only accessible to logged-in users. If you are not logged in, you will only have access to the registration and login routes. Once you log in, you will have access to the full functionality of the application.
 
 ## Screenshot
 ![Screenshot 2023-05-06 at 13 19 35](https://user-images.githubusercontent.com/102771343/236623806-858f737d-dab6-4b43-8dd6-45d495cb16ad.png)
