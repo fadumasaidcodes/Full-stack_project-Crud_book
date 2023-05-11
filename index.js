@@ -165,17 +165,25 @@ router.get('/home', requireLogin, async ctx => {
 });
 
 // Book details page
-router.get('/details/:id', requireLogin, async ctx => {
+router.get('/details/:id', requireLogin, async (ctx) => {
   try {
-    console.log(ctx.params.id)
-    const sql = `SELECT * FROM books WHERE id = ${ctx.params.id};`
-    const data = await db.get(sql)
-    console.log(data)
-    await ctx.render('details', data)
-  } catch(err) {
-    ctx.body = err.message
+    const bookId = ctx.params.id;
+
+    const sql = `SELECT * FROM books WHERE id = ${bookId};`;
+    const data = await db.get(sql);
+
+    if (!data) {
+      // Book not found, display an error message
+      ctx.body = 'Book not found';
+      return;
+    }
+
+    await ctx.render('details', data);
+  } catch (err) {
+    ctx.body = err.message;
   }
 });
+
 
 // Update book page
 router.get('/details/:id/update', requireLogin, async ctx => {
