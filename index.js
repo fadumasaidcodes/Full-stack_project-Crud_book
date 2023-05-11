@@ -225,6 +225,41 @@ router.post('/add', requireLogin, async ctx => {
     ctx.body = err.message
   }
 });
+// Handle thumbs up
+router.post('/thumbs/up', requireLogin, async ctx => {
+  try {
+    const { bookId, userId } = ctx.request.body;
+    const sql = `INSERT INTO thumbs (book_id, user_id, type) VALUES (?, ?, 'up');`;
+    await db.run(sql, bookId, userId);
+    ctx.redirect(`/details/${bookId}`);
+  } catch (err) {
+    ctx.body = err.message;
+  }
+});
+
+// Handle thumbs down
+router.post('/thumbs/down', requireLogin, async ctx => {
+  try {
+    const { bookId, userId } = ctx.request.body;
+    const sql = `INSERT INTO thumbs (book_id, user_id, type) VALUES (?, ?, 'down');`;
+    await db.run(sql, bookId, userId);
+    ctx.redirect(`/details/${bookId}`);
+  } catch (err) {
+    ctx.body = err.message;
+  }
+});
+
+// Handle comment submission
+router.post('/comments', requireLogin, async ctx => {
+  try {
+    const { bookId, userId, comment } = ctx.request.body;
+    const sql = `INSERT INTO comments (book_id, user_id, comment) VALUES (?, ?, ?);`;
+    await db.run(sql, bookId, userId, comment);
+    ctx.redirect(`/details/${bookId}`);
+  } catch (err) {
+    ctx.body = err.message;
+  }
+});
 
 
 const port = 8080; // Define the port number here

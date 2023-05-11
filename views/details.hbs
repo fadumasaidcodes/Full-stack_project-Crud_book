@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>{{title}}</title>
   <meta name="description" content="book details">
   <meta name="author" content="Faduma">
+  <link href="https://fonts.googleapis.com/css?family=Anton|Jura&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <style>
-    body {
+  body {
       background-color: #f5f5f5;
       color: #333;
       font-family: 'Roboto', sans-serif;
@@ -14,97 +18,120 @@
       padding: 50px;
     }
 
-    h1 {
-      margin-bottom: 20px;
-      font-size: 36px;
+    .card {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
     }
 
-    p {
+    .card-title {
+      font-size: 24px;
+      font-weight: bold;
       margin-bottom: 10px;
-      font-size: 20px;
     }
 
-    button.update,
-    button.delete {
+    .card-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .card-info-icon {
+      margin-right: 5px;
+    }
+
+    .buttons {
+      display: flex;
+      align-items: center;
+    }
+
+    .delete,
+    .update {
       background-color: #4CAF50;
       border: none;
       color: white;
-      padding: 10px 20px;
+      padding: 8px 15px;
       text-align: center;
       text-decoration: none;
       display: inline-block;
-      font-size: 16px;
+      font-size: 14px;
       margin-right: 10px;
       cursor: pointer;
       transition: background-color 0.3s;
     }
 
-    button.delete {
+    .delete {
       background-color: #f44336;
     }
 
-    button.update:hover,
-    button.delete:hover {
+    .update:hover,
+    .delete:hover {
       background-color: #333;
     }
 
-    .isbn,
-    .title {
-      color: #333;
-      font-weight: bold;
-      font-size: 24px;
-    }
+ .home-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
 
-    .details {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
+  button.home {
+    background-color: transparent;
+    border: none;
+    color: #333;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+  }
 
-    .image {
-      margin-bottom: 30px;
-    }
-
-    .home {
-      margin-right: 10px;
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-    }
-
-    @keyframes button-animation {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-      100% { transform: translateY(0); }
-    }
-
-    .update, .delete {
-      animation: button-animation 1s infinite;
-    }
-</style>
+  .home-icon {
+    margin-left: 5px;
+  }
+  </style>
 </head>
+
 <body>
-  <div class="details">
-    <h1>{{title}}</h1>
+<div class="home-container">
+    <a href="/">
+      <button class="home">
+        <i class="fas fa-arrow-left home-icon"></i> Go Back Home
+      </button>
+    </a>
+</div>
+
+
+ <div class="card">
+  <h1 class="card-title">{{title}}</h1>
+  <div class="card-info">
+    <i class="fas fa-book card-info-icon"></i>
     <p class="isbn">ISBN13: {{isbn}}</p>
-    <p class="description">{{description}}</p>
-    
-    <br>
-    <br>
-    <br>
-    <form action="/details/{{id}}/delete" method="post">
-      <button type="submit" class="delete">Delete</button>
-    </form>
-    <br>
-    <br>
-    <div>
-      <a href="/details/{{id}}/update"><button class="update">Update</button></a>
-      <a href="/home"><button class="update">Home</button></a>
-    </div>
   </div>
+  <div class="card-info">
+    <i class="fas fa-info-circle card-info-icon"></i>
+    <p class="description">{{description}}</p>
+  </div>
+
+  <div class="buttons">
+    <form action="/details/{{id}}/delete" method="post" onsubmit="return confirm('Are you sure you want to delete?')">
+      <button type="submit" class="delete">
+        <i class="fas fa-trash"></i> Delete
+      </button>
+    </form>
+    <a href="/details/{{id}}/update">
+      <button class="update">
+        <i class="fas fa-edit"></i> Update
+      </button>
+    </a>
+  </div>
+</div>
+
+
 </body>
+
 </html>
