@@ -169,20 +169,24 @@ router.get('/details/:id', requireLogin, async (ctx) => {
   try {
     const bookId = ctx.params.id;
 
-    const sql = `SELECT * FROM books WHERE id = ${bookId};`;
-    const data = await db.get(sql);
+    const bookSql = `SELECT * FROM books WHERE id = ${bookId};`;
+    const bookData = await db.get(bookSql);
 
-    if (!data) {
+    if (!bookData) {
       // Book not found, display an error message
       ctx.body = 'Book not found';
       return;
     }
 
-    await ctx.render('details', data);
+    const commentsSql = `SELECT * FROM comments WHERE book_id = ${bookId};`;
+    const commentsData = await db.all(commentsSql);
+
+    await ctx.render('details', { ...bookData, comments: commentsData, username: ctx.session.user.username });
   } catch (err) {
     ctx.body = err.message;
   }
 });
+
 
 
 // Update book page
@@ -250,16 +254,21 @@ router.post('/thumbs/down', requireLogin, async ctx => {
 });
 
 // Handle comment submission
+
 router.post('/comments', requireLogin, async ctx => {
   try {
     const { bookId, userId, comment } = ctx.request.body;
-    const sql = `INSERT INTO comments (book_id, user_id, comment) VALUES (?, ?, ?);`;
-    await db.run(sql, bookId, userId, comment);
+    const username = ctx.request.body.username; // Retrieve the username from the request body
+    const timestamp = new Date().toLocaleString(); // Get current timestamp
+    const sql = `INSERT INTO comments (book_id, user_id, username, comment, timestamp) VALUES (?, ?, ?, ?, ?);`;
+    await db.run(sql, bookId, userId, username, comment, timestamp);
     ctx.redirect(`/details/${bookId}`);
   } catch (err) {
     ctx.body = err.message;
   }
 });
+
+
 
 
 const port = 8080; // Define the port number here

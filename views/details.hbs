@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <style>
-  body {
+    body {
       background-color: #f5f5f5;
       color: #333;
       font-family: 'Roboto', sans-serif;
@@ -71,65 +71,97 @@
       background-color: #333;
     }
 
- .home-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding: 10px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  }
+    .home-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 10px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
 
-  button.home {
-    background-color: transparent;
-    border: none;
-    color: #333;
-    padding: 10px;
-    font-size: 20px;
-    cursor: pointer;
-  }
+    button.home {
+      background-color: transparent;
+      border: none;
+      color: #333;
+      padding: 10px;
+      font-size: 20px;
+      cursor: pointer;
+    }
 
-  .home-icon {
-    margin-left: 5px;
-  }
+    .home-icon {
+      margin-left: 5px;
+    }
   </style>
 </head>
 
 <body>
-<div class="home-container">
+  <div class="home-container">
     <a href="/">
       <button class="home">
         <i class="fas fa-arrow-left home-icon"></i> Go Back Home
       </button>
     </a>
-</div>
-
-
- <div class="card">
-  <h1 class="card-title">{{title}}</h1>
-  <div class="card-info">
-    <i class="fas fa-book card-info-icon"></i>
-    <p class="isbn">ISBN13: {{isbn}}</p>
-  </div>
-  <div class="card-info">
-    <i class="fas fa-info-circle card-info-icon"></i>
-    <p class="description">{{description}}</p>
   </div>
 
-  <div class="buttons">
-    <form action="/details/{{id}}/delete" method="post" onsubmit="return confirm('Are you sure you want to delete?')">
-      <button type="submit" class="delete">
-        <i class="fas fa-trash"></i> Delete
-      </button>
-    </form>
-    <a href="/details/{{id}}/update">
-      <button class="update">
-        <i class="fas fa-edit"></i> Update
-      </button>
-    </a>
+  <div class="card">
+    <div class="card-header">
+      <h1 class="card-title">{{title}}</h1>
+      <div class="thumbs-container">
+        <button class="thumb-up">
+          <i class="fas fa-thumbs-up"></i>
+        </button>
+        <button class="thumb-down">
+          <i class="fas fa-thumbs-down"></i>
+        </button>
+      </div>
+    </div>
+    <div class="card-info">
+      <i class="fas fa-book card-info-icon"></i>
+      <p class="isbn">ISBN13: {{isbn}}</p>
+    </div>
+    <div class="card-info">
+      <i class="fas fa-info-circle card-info-icon"></i>
+      <p class="description">{{description}}</p>
+    </div>
+    <div class="buttons">
+      <form action="/details/{{id}}/delete" method="post" onsubmit="return confirm('Are you sure you want to delete?')">
+        <button type="submit" class="delete">
+          <i class="fas fa-trash"></i> Delete
+        </button>
+      </form>
+      <a href="/details/{{id}}/update">
+        <button class="update">
+          <i class="fas fa-edit"></i> Update
+        </button>
+      </a>
+    </div>
+    <div class="comments-container">
+      <h2>Comments</h2>
+      <form class="comment-form" action="/comments" method="post">
+        <textarea class="comment-input" rows="3" placeholder="Write a comment" name="comment"></textarea>
+        <input type="hidden" name="bookId" value="{{id}}">
+        <input type="hidden" name="userId" value="{{userId}}">
+        <input type="hidden" name="username" value="{{username}}">
+        <button type="submit" class="comment-submit">Submit</button>
+      </form>
+      <ul class="comment-list">
+        {{#each comments}}
+        <li>
+          <p class="comment-meta">
+            <span class="comment-username">{{username}}</span>
+            <span class="comment-timestamp">{{timestamp}}</span>
+          </p>
+          <p class="comment-text">{{comment}}</p>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+
+
+
   </div>
-</div>
 
 
 </body>
