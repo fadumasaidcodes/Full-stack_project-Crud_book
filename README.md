@@ -3,10 +3,11 @@
 To set up and run the project, please follow these steps:
 1. First, you need to clone the project repository. Open your terminal or command prompt and type the following command:
 ```
-git clone git@github.com:fadumasaidcodes/Full-stack_project-Crud_book.git 
-This command will clone the repository onto your local machine.
+git clone git@github.com:fadumasaidcodes/Full-stack_project-Crud_book.git
+
 
 ```
+
 2. Navigate to the cloned project directory using the cd command. For example:
 
 ```
@@ -19,7 +20,6 @@ cd Full-stack_project-Crud_book
 
 npm install
 
-This command will install all the required packages and dependencies specified in the project's package.json file.
 
 ```
 
@@ -28,10 +28,15 @@ This command will install all the required packages and dependencies specified i
 ```
 node index.js
 
-This command will start the project and make it accessible at http://localhost:8080/
 
 ```
 
+5. you can access the project :
+
+```
+http://localhost:8080/
+
+```
 Make sure you have Node.js and npm (Node Package Manager) installed on your system before running these commands. Let me know if you need any further assistance!
 
 
