@@ -1,45 +1,4 @@
 [Live](https://book-tg75.onrender.com/)[Note: the website may take a few seconds to load as rendering can be slow].
-## Run locally
-To set up and run the project, please follow these steps:
-1. First, you need to clone the project repository. Open your terminal or command prompt and type the following command:
-```
-git clone git@github.com:fadumasaidcodes/Full-stack_project-Crud_book.git
-
-
-```
-
-2. Navigate to the cloned project directory using the cd command. For example:
-
-```
-cd Full-stack_project-Crud_book
-
-```
-3. Once you are inside the project directory, install the necessary dependencies by running the following command:
-
-```
-
-npm install
-
-
-```
-
-4. After the installation is complete, you can run the project locally by executing the following command:
-
-```
-node index.js
-
-
-```
-
-5. you can access the project :
-
-```
-http://localhost:8080/
-
-```
-Make sure you have Node.js and npm (Node Package Manager) installed on your system before running these commands. Let me know if you need any further assistance!
-
-
 # Bookshop Web Application Description
 
 The Bookshop Web Application follows a CRUD (Create, Read, Update, Delete) style for managing books. 
@@ -123,9 +82,43 @@ The Bookshop Web Application was built using the following technologies:
 ## Installation
 To install the Bookshop Web Application, please follow these steps:
 
-- Clone the repository to your local machine.
-- Open the terminal and navigate to the project directory.
-- Run npm install to install the dependencies.
+To set up and run the project locally, please follow these steps:
+
+1. Open your terminal or command prompt and navigate to the directory where you want to clone the project.
+
+2. Clone the project repository by running the following command:
+
+```
+git clone git@github.com:fadumasaidcodes/Full-stack_project-Crud_book.git
+
+```
+
+3. Once the cloning process is complete, navigate to the cloned project directory using the following command:
+
+```
+cd Full-stack_project-Crud_book
+
+```
+
+4. Now, open a new terminal within Visual Studio Code. You can do this by selecting "View" > "Terminal" or by using the keyboard shortcut Ctrl+` (backtick). In the terminal, install the project's dependencies by running the following command:
+
+```
+npm install
+
+```
+Once the installation is complete, you can start the project locally by running the following command:
+
+```
+node index.js
+
+```
+5. The project will now be running locally. To access it, open your web browser and enter the following URL:
+
+```
+http://localhost:8080/
+
+```
+
 
 
 # Usage
