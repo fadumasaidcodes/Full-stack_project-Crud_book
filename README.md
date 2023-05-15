@@ -1,4 +1,40 @@
 [Live](https://book-tg75.onrender.com/)[Note: the website may take a few seconds to load as rendering can be slow].
+## Run locally
+To set up and run the project, please follow these steps:
+1. First, you need to clone the project repository. Open your terminal or command prompt and type the following command:
+```
+git clone git@github.com:fadumasaidcodes/Full-stack_project-Crud_book.git 
+This command will clone the repository onto your local machine.
+
+```
+2. Navigate to the cloned project directory using the cd command. For example:
+
+```
+cd Full-stack_project-Crud_book
+
+```
+3. Once you are inside the project directory, install the necessary dependencies by running the following command:
+
+```
+
+npm install
+
+This command will install all the required packages and dependencies specified in the project's package.json file.
+
+```
+
+4. After the installation is complete, you can run the project locally by executing the following command:
+
+```
+node index.js
+
+This command will start the project and make it accessible at http://localhost:8080/
+
+```
+
+Make sure you have Node.js and npm (Node Package Manager) installed on your system before running these commands. Let me know if you need any further assistance!
+
+
 # Bookshop Web Application Description
 
 The Bookshop Web Application follows a CRUD (Create, Read, Update, Delete) style for managing books. 
