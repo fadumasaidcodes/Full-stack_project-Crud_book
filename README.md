@@ -48,7 +48,7 @@ The Bookshop Web Application utilizes Node.js, Koa, Handlebars (hbs), and SQL to
 - The application uses bcrypt to hash and compare passwords, and it utilizes the koa-session middleware to manage user sessions. The crypto module is used to generate a session secret key.
 
 ## User Stories
-The Bookshop Web Application has the following user stories:
+The Bookshop Web Application has the following User Stories:
 ```
 - As a new user, I want to be able to register for an account.
 - As a registered user, I want to be able to log in to my account.
