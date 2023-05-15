@@ -57,6 +57,8 @@ The Bookshop Web Application has the following user stories:
 - As a registered user, I want to be able to add a new book to the bookshop.
 - As a registered user, I want to be able to update a book in the bookshop.
 - As a registered user, I want to be able to delete a book from the bookshop.
+- As a user, I want to be able to leave comments on books in the bookshop, including my username, the date, and the time of the comment.
+
 ```
 ## Technologies Used
 The Bookshop Web Application was built using the following technologies:
