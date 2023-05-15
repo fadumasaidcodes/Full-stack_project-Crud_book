@@ -2,186 +2,154 @@
 <html>
 
 <head>
-    <title>My Favourite Books</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-    <link href="css/style.css" type="text/css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+	<title>My Favourite Books</title>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+	<link href="css/style.css" type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link rel="stylesheet" href="./dist/output.css">
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-md bg-dark" style="background-color: #1c3048;">
-        <div class="container">
-            <a class="navbar-brand" href="#"><i class="fas fa-book"></i> Favourite Books</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                <span class="navbar-toggler-icon" style="font-size: 0.50rem;"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">Logout</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/form">Add a book</a>
-                    </li>
-                </ul>
+	<header class="bg-gray-800 py-4">
+		<nav class="container mx-auto px-4 flex items-center justify-between">
+			<a href="#" class="text-white text-xl font-bold">Favourite Books</a>
+			<div class="flex-grow"></div>
+			<ul class="text-white mx-auto">
+				<li class="inline-block mx-1"><a href="#" class="hover:text-gray-300">Home</a></li>
+				<li class="inline-block mx-1"><a href="#" class="hover:text-gray-300">About</a></li>
+				<li class="inline-block mx-1"><a href="#" class="hover:text-gray-300">Books</a></li>
+				<li class="inline-block mx-1"><a href="#" class="hover:text-gray-300">Contact</a></li>
+			</ul>
+			<div class="flex-grow"></div>
+			<input type="checkbox" id="switch" />
+			<label for="switch">Toggle</label>
+		</nav>
+	</header>
+<section class="bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply mb-12" style="margin-bottom: 50px;">
+    <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
+        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
+            Welcome to My Favourite Books
+        </h1>
+        <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">
+            Discover your next favorite book with us. Our extensive library of books is sure to have something that will captivate and inspire you. Press the add button or scroll down to our list of books today!
+        </p>
+        <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
+            <a href="/form" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                Add a Book
+                <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+            </a>
+            <a href="#" class="inline-flex justify-center hover:bg-white hover:text-blue-700 py-3 px-5 text-base font-medium text-white rounded-lg bg-transparent border-2 border-white transition-colors duration-300">
+                Learn more
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="mt-12 mb-12 bg-gray-100" style="margin-bottom: 50px; margin-top: 40px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="mb-8 text-3xl font-extrabold leading-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
+                    Unlock <mark class="px-2 text-white bg-blue-600 rounded dark:bg-blue-500">Limitless knowledge</mark> with our Book Collection
+                </h1>
             </div>
         </div>
-        <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
-    </nav>
+    </div>
+</section>
+
+	<section class="card-container" style="margin-left: 20px; margin-right: 20px; margin-top 40px;">
+		{{#if query}}
+		<p>Showing results for "{{query}}"</p>
+		{{/if}}
+		{{#each books}}
+		<div class="card">
+			<h2>{{this.title}}</h2>
+			<p>{{this.description}}</p>
+			<p><a href="/details/{{this.id}}">Read more</a></p>
+		</div>
+		{{/each}}
+	</section>
 
 
 
-    <main>
-        <section class="intro-section bg-light py-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="text-center mb-4">Welcome to My Favourite Books</h2>
-                        <p class="lead text-center mb-4">Discover your next favorite book with us. Our extensive library
-                            of books is sure to have something that will captivate and inspire you. Press teh add button or scroll down to our list of books.
-                            today!</p>
-                        <div class="text-center">
-                            <a href="/form" class="btn btn-primary">
-                                <i class="fas fa-plus-circle"></i> Add Book
-                            </a>
-                        </div>
-                        <div class="text-center mt-4">
-                            <a href="#book-list" class="btn btn-link scroll-down">
-                                <i class="fas fa-chevron-down fa-3x"></i>
-                                <br>
-                                <span>Scroll Down</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+	<script>
+		$(document).ready(function () {
+			var isDark = false; // Set isDark to false to start with the light mode
+
+			var themeButtonEl = $('#switch');
+			themeButtonEl.on('click', function () {
+				if (isDark) {
+					$('body').css({ 'background-color': '#FFFFFF', color: '#1a1a1a' });
+					$('.card').css({ 'background-color': '#FFFFFF', color: '#000000' });
+					isDark = false;
+				} else {
+					$('body').css({ 'background-color': '#1a1a1a', color: '#FFFFFF' });
+					$('.card').css({ 'background-color': '#1a1a1a', color: '#FFFFFF' });
+					isDark = true;
+				}
+			});
+		});
+	</script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
-        <section>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="book-list  text-center mb-4">List of Books</h2>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="card-container">
-            {{#if query}}
-            <p>Showing results for "{{query}}"</p>
-            {{/if}}
-            {{#each books}}
-            <div class="card">
-                <h2>{{this.title}}</h2>
-                <p>{{this.description}}</p>
-                <p><a href="/details/{{this.id}}">Read more</a></p>
-            </div>
-            {{/each}}
-        </section>
-
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-        <script>
-            $(document).ready(function () {
-                var isDark = false; // Set isDark to false to start with the light mode
-
-                var themeButtonEl = $('#switch');
-                themeButtonEl.on('click', function () {
-                    if (isDark) {
-                        $('body').css({ 'background-color': '#FFFFFF', color: '#1a1a1a' });
-                        $('.card').css({ 'background-color': '#FFFFFF', color: '#000000' });
-                        isDark = false;
-                    } else {
-                        $('body').css({ 'background-color': '#1a1a1a', color: '#FFFFFF' });
-                        $('.card').css({ 'background-color': '#1a1a1a', color: '#FFFFFF' });
-                        isDark = true;
-                    }
-                });
-            });
-        </script>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
-    </main>
-    <footer class="footer bg-dark">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-left mb-4 mb-md-0">
-                    <h5 class="text-uppercase mb-3 text-white" id="Contact">Fellow Me </h5>
-                    <p class="text-muted mb-4">I am a highly skilled and motivated individual with 3 years of experience
-                        in
-                        software develpment. I am currently seeking new opportunities and am available for hire. I am
-                        confident in
-                        my ability to bring value to any team and would love to discuss potential opportunities with
-                        your company.
-                    </p>
-                    <ul class="list-inline mb-0">
-                        <li class="list-inline-item mr-3">
-                            <a href="https://www.linkedin.com/in/faduma-ibrahim-msc-230a5387/" class="text-white">
-                                <i class="fab fa-linkedin fa-2x"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item mr-3">
-                            <a href="#" class="text-white">
-                                <i class="fab fa-twitter fa-2x"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item mr-3">
-                            <a href="https://github.com/fadumasaidcodes" class="text-white">
-                                <i class="fab fa-github fa-2x"></i>
-                            </a>
-                        </li>
-
-                        <li class="list-inline-item">
-                            <a href="#" class="text-white">
-                                <i class="fab fa-instagram fa-2x"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-6 text-center text-md-right">
-                    <h5 class="text-uppercase mb-3 text-white">Contact Me</h5>
-                    <ul class="list-unstyled mb-0">
-                        <li class="mb-2">
-                            <i class="fas fa-map-marker-alt fa-lg text-primary mr-3"></i>
-                            <span class="text-muted">123 Main Street, California, USA</span>
-                        </li>
-                        <li class="mb-2">
-                            <i class="fas fa-envelope fa-lg text-primary mr-3"></i>
-                            <span class="text-muted">info@california.com</span>
-                        </li>
-                        <li class="mb-2">
-                            <i class="fab fa-github fa-lg text-primary mr-3"></i>
-                            <a href="https://github.com/fadumasaidcodes" target="_blank"
-                                rel="noopener noreferrer">fadumasaidcodes</a>
-                        </li>
-
-                        <li class="mb-2">
-                            <i class="fas fa-phone fa-lg text-primary mr-3"></i>
-                            <span class="text-muted">+1 (800) CALI-FORNIA</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col text-center">
-                    <hr class="border-light">
-                    <p class="text-white">Favourite Books&copy; 2023</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+	<footer class="bg-gray-800 py-10">
+		<div class="container mx-auto px-4">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+				<div>
+					<h4 class="text-white text-lg font-medium">About Us</h4>
+					<ul class="mt-4">
+						<li><a href="#" class="text-gray-400 hover:text-gray-200">Our Mission</a></li>
+						<li><a href="#" class="text-gray-400 hover:text-gray-200">FAQs</a></li>
+						<li><a href="#" class="text-gray-400 hover:text-gray-200">Contact Us</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4 class="text-white text-lg font-medium">Categories</h4>
+					<ul class="mt-4">
+						<li><a href="#" class="text-gray-400 hover:text-gray-200">Fiction</a></li>
+						<li><a href="#" class="text-gray-400 hover:text-gray-200">Non-fiction</a></li>
+						<li><a href="#" class="text-gray-400 hover:text-gray-200">Science</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4 class="text-white text-lg font-medium">Connect</h4>
+					<ul class="mt-4">
+						<li><a href="#" class="text-gray-400 hover:text-gray-200">Facebook</a></li>
+						<li><a href="#" class="text-gray-400 hover:text-gray-200">Twitter</a></li>
+						<li><a href="#" class="text-gray-400                        hover:text-gray-200">Instagram</a>
+						</li>
+						<li><a href="#" class="text-gray-400 hover:text-gray-200">LinkedIn</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4 class="text-white text-lg font-medium">Subscribe</h4>
+					<p class="mt-4 text-gray-400">Subscribe to our newsletter for the latest updates.</p>
+					<form class="mt-4">
+						<input type="email"
+							class="w-full px-4 py-2 rounded-lg bg-gray-900 text-gray-100 focus:outline-none"
+							placeholder="Enter your email">
+						<button
+							class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 focus:outline-none">Subscribe</button>
+					</form>
+				</div>
+			</div>
+			<div class="border-t border-gray-700 mt-8 pt-8">
+				<p class="text-gray-400 text-sm text-center">© 2023 Favourite Books. All rights reserved.</p>
+			</div>
+		</div>
+	</footer>
 </body>
 
 </html>
-
