@@ -296,6 +296,7 @@ router.get('/search-results', requireLogin, async (ctx) => {
     // Render the search results directly in the router handler
     await ctx.render('search', { query, books });
   } catch (err) {
+    // console any error
     console.error('Error occurred during API request:', err);
     // Handle error and render an error page
     await ctx.render('error', { error: 'An error occurred during the search' });
