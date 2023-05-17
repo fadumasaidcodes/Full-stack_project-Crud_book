@@ -1,0 +1,21 @@
+
+<section class="my-44 mx-auto md:w-3/4 lg:w-1/2">
+    <h2>Search Results</h2>
+    <!-- Display the search results here using the data passed from the server -->
+    <!-- Example: Loop through the books array and display each book's information -->
+    <div class="grid grid-cols-3 gap-4">
+        {{#each books}}
+        <div class="bg-white rounded-lg shadow-lg p-4">
+            <h3 class="text-xl font-semibold">{{this.title}}</h3>
+            <p class="text-gray-600">{{this.description}}</p>
+            <!-- Display the book's image -->
+            <img src="{{this.image}}" alt="Book Cover" class="w-full h-auto rounded-lg mt-4">
+
+            <!-- Display the book's link -->
+            <a href="{{this.link}}" target="_blank" class="block mt-4 text-blue-600 hover:underline">View Book</a>
+
+            <!-- Display more book information as needed -->
+        </div>
+        {{/each}}
+    </div>
+</section>

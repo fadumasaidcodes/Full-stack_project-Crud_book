@@ -106,20 +106,22 @@
 		}
 	</style>
 
-	<header class="bg-gray-800 py-4 sticky-nav">
-		<nav class="container mx-auto px-4 flex items-center justify-between">
-			<a href="#" class="text-white text-2xl font-bold pr-8">Favourite Books</a>
-			<ul class="text-white flex space-x-4">
-				<li><a href="#" class="hover:text-gray-300">Home</a></li>
-				<li><a href="./logout" class="hover:text-gray-300">Logout</a></li>
-				<li><a href="#" class="hover:text-gray-300">Books</a></li>
-				<li><a href="#" class="hover:text-gray-300">Contact</a></li>
-			</ul>
-			<div class="flex-grow"></div>
-			<input type="checkbox" id="switch" class="nav-toggle" />
-			<label for="switch" class="nav-toggle-label">Toggle</label>
-		</nav>
-	</header>
+<header class="bg-gray-800 py-4 sticky-nav">
+    <nav class="container mx-auto px-4 flex items-center justify-between">
+        <a href="#" class="text-white text-2xl font-bold pr-8">Favourite Books</a>
+        <ul class="text-white flex space-x-4">
+            <li><a href="#" class="hover:text-gray-300">Home</a></li>
+            <li class="list-none"><a href="#" class="hover:text-gray-300">about</a></li>
+            <li><a href="#" class="hover:text-gray-300">Books</a></li>
+            <li><a href="#" class="hover:text-gray-300">Contact</a></li>
+        </ul>
+        <div class="flex-grow"></div>
+        <input type="checkbox" id="switch" class="nav-toggle" />
+        <label for="switch" class="nav-toggle-label">Toggle</label>
+        <div class="w-4"></div> <!-- Space between toggle and logout -->
+        <a href="./logout" class="hover:text-gray-300">Logout</a>
+    </nav>
+</header>
 
 
 
@@ -159,15 +161,45 @@
 				<div class="col-md-12">
 					<h1
 						class="mb-8 text-3xl font-extrabold leading-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
-						Unlock <mark class="px-2 text-white bg-blue-600 rounded dark:bg-blue-500">Limitless
-							knowledge</mark> with our Book Collection
+					Search a <mark class="px-2 text-white bg-blue-600 rounded dark:bg-blue-500">Limitless
+							Books</mark> with our Google Book APi
 					</h1>
 				</div>
 			</div>
 		</div>
 	</section>
 
+
+
+<section class="my-44 mx-auto md:w-3/4 lg:w-1/2 text-center">
+  <form>
+    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search a book</label>
+    <div class="relative">
+      <input type="search" id="default-search" class="block w-full p-3 pl-9 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search a book" required>
+      <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+    </div>
+  </form>
+</section>
+
+<script>
+  document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    const searchQuery = document.getElementById('default-search').value;
+
+    // Perform validation on the search query if needed
+
+    console.log('Search query:', searchQuery); // Add this line to log the search query
+
+    window.location.href = `/search-results?query=${encodeURIComponent(searchQuery)}`;
+  });
+</script>
+
+<br>
+
+
 	<section class="card-container" style="margin-left: 20px; margin-right: 20px; margin-top 40px;">
+
 		{{#if query}}
 		<p>Showing results for "{{query}}"</p>
 		{{/if}}

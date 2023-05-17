@@ -268,6 +268,40 @@ router.post('/comments', requireLogin, async ctx => {
   }
 });
 
+// Render search page
+router.get('/search', requireLogin, async (ctx) => {
+  await ctx.render('search');
+});
+
+// Handle search form submission
+router.get('/search-results', requireLogin, async (ctx) => {
+  const query = ctx.query.query; // Get the search query from the URL parameters
+  
+  // Example: External API call using Google Books API
+  const apiKey = 'AIzaSyA1afOxrOZB-U5MuPQiOSvrwGLoVRIMjI8';
+  const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&key=${apiKey}`;
+
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    // Extract relevant information from the API response
+    const books = data.items.map((item) => ({
+      title: item.volumeInfo.title,
+      description: item.volumeInfo.description,
+      image: item.volumeInfo.imageLinks?.thumbnail,
+      link: item.volumeInfo.infoLink,
+    }));
+
+    // Render the search results directly in the router handler
+    await ctx.render('search', { query, books });
+  } catch (err) {
+    console.error('Error occurred during API request:', err);
+    // Handle error and render an error page
+    await ctx.render('error', { error: 'An error occurred during the search' });
+  }
+});
+
 
 
 
