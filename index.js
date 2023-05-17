@@ -262,7 +262,7 @@ router.post('/comments', requireLogin, async ctx => {
     const timestamp = new Date().toLocaleString(); // Get current timestamp
     const sql = `INSERT INTO comments (book_id, user_id, username, comment, timestamp) VALUES (?, ?, ?, ?, ?);`;
     await db.run(sql, bookId, userId, username, comment, timestamp);
-    ctx.redirect(`/details/${bookId}`);
+    ctx.redirect(`/details/${bookId}`); // book Id
   } catch (err) {
     ctx.body = err.message;
   }
