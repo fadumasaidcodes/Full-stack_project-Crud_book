@@ -1,4 +1,5 @@
 // Import required modules
+// Import required modules
 const Koa = require('koa');
 const bcrypt = require('bcrypt');
 const session = require('koa-session');
@@ -9,12 +10,8 @@ const bodyParser = require('koa-bodyparser');
 const crypto = require('crypto');
 const sqlite3 = require('sqlite3');
 const { open } = require('sqlite');
-const fetch = require('node-fetch');
-global.fetch = fetch;
+import fetch from 'node-fetch';
 
-// Your other code...
-
-// Create Koa app
 const app = new Koa();
 const router = new Router();
 
