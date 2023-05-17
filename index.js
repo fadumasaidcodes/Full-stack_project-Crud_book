@@ -9,6 +9,8 @@ const bodyParser = require('koa-bodyparser');
 const crypto = require('crypto');
 const sqlite3 = require('sqlite3');
 const { open } = require('sqlite');
+import 'isomorphic-fetch';
+
 
 // Create Koa app
 const app = new Koa();
