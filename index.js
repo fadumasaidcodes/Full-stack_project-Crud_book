@@ -12,7 +12,7 @@ const { open } = require('sqlite');
 const fetch = require('node-fetch');
 global.fetch = fetch;
 
-
+// Your other code...
 
 // Create Koa app
 const app = new Koa();
