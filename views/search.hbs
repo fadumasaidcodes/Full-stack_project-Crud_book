@@ -6,7 +6,9 @@
     <div class="grid grid-cols-3 gap-4">
         {{#each books}}
         <div class="bg-white rounded-lg shadow-lg p-4">
+                 <!-- Display the book's title -->
             <h3 class="text-xl font-semibold">{{this.title}}</h3>
+                 <!-- Display the book's description-->
             <p class="text-gray-600">{{this.description}}</p>
             <!-- Display the book's image -->
             <img src="{{this.image}}" alt="Book Cover" class="w-full h-auto rounded-lg mt-4">
