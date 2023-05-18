@@ -277,7 +277,7 @@ router.get('/search-results', requireLogin, async (ctx) => {
   const query = ctx.query.query; // Get the search query from the URL parameters
 
   // Example: External API call using Google Books API
-  const apiKey = 'YOUR_API_KEY';
+  const apiKey = 'AIzaSyA1afOxrOZB-U5MuPQiOSvrwGLoVRIMjI8';
   const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&key=${apiKey}`;
 
   try {
