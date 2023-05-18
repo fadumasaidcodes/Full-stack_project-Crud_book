@@ -9,7 +9,7 @@ const bodyParser = require('koa-bodyparser');
 const crypto = require('crypto');
 const sqlite3 = require('sqlite3');
 const { open } = require('sqlite');
-
+const axios = require('axios');
 
 const app = new Koa();
 const router = new Router();
@@ -267,7 +267,6 @@ router.post('/comments', requireLogin, async ctx => {
     ctx.body = err.message;
   }
 });
-
 // Render search page
 router.get('/search', requireLogin, async (ctx) => {
   await ctx.render('search');
@@ -276,14 +275,14 @@ router.get('/search', requireLogin, async (ctx) => {
 // Handle search form submission
 router.get('/search-results', requireLogin, async (ctx) => {
   const query = ctx.query.query; // Get the search query from the URL parameters
-  
+
   // Example: External API call using Google Books API
-  const apiKey = 'AIzaSyA1afOxrOZB-U5MuPQiOSvrwGLoVRIMjI8';
+  const apiKey = 'YOUR_API_KEY';
   const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&key=${apiKey}`;
 
   try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
+    const response = await axios.get(apiUrl);
+    const data = response.data;
 
     // Extract relevant information from the API response
     const books = data.items.map((item) => ({
@@ -296,14 +295,12 @@ router.get('/search-results', requireLogin, async (ctx) => {
     // Render the search results directly in the router handler
     await ctx.render('search', { query, books });
   } catch (err) {
-    // console any error
+    // Console any error
     console.error('Error occurred during API request:', err);
     // Handle error and render an error page
     await ctx.render('error', { error: 'An error occurred during the search' });
   }
-});
-
-
+})
 
 
 const port = 8080; // Define the port number here
