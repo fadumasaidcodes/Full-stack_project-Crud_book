@@ -99,16 +99,19 @@
 
 <body>
 	<h1>Add a Book</h1>
-	<form action="/add" method="post">
-		<label for="title">Book Title:</label>
-		<input type="text" name="title" placeholder="Book Title" value="" autofocus>
-		<label for="isbn">ISBN13:</label>
-		<input type="number" name="isbn" placeholder="ISBN13 Number" value="" maxlength="13" autocomplete="off">
-		<label for="description">Description:</label>
-		<textarea name="description" placeholder="Description"></textarea>
-		<br>
-		<input type="submit" value="Add">
-	</form>
+	<form action="/add" method="post" enctype="multipart/form-data">
+  <label for="title">Book Title:</label>
+  <input type="text" name="title" placeholder="Book Title" value="" autofocus>
+  <label for="isbn">ISBN13:</label>
+  <input type="number" name="isbn" placeholder="ISBN13 Number" value="" maxlength="13" autocomplete="off">
+  <label for="description">Description:</label>
+  <textarea name="description" placeholder="Description"></textarea>
+  <label for="image">Book Cover:</label>
+  <input type="file" name="image">
+  <br>
+  <input type="submit" value="Add">
+</form>
+
 	<div class="back-btn">
 				<a href="/home">Back to Homepage</a>
 			</div>

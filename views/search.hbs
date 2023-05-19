@@ -1,23 +1,116 @@
+<style>
+    .my-44 {
+        margin-top: 11rem;
+        margin-bottom: 11rem;
+    }
+
+    .mx-auto {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .md:w-3/4 {
+        width: 75%;
+    }
+
+    .lg:w-1/2 {
+        width: 50%;
+    }
+
+    .grid {
+        display: grid;
+    }
+
+    .grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .gap-4 {
+        gap: 1rem;
+    }
+
+    .bg-white {
+        background-color: #fff;
+    }
+
+    .rounded-lg {
+        border-radius: 0.5rem;
+    }
+
+    .shadow-lg {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .p-4 {
+        padding: 1rem;
+    }
+
+    .text-xl {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+    }
+
+    .font-semibold {
+        font-weight: 600;
+    }
+
+    .text-gray-600 {
+        color: #4b5563;
+    }
+
+    .w-full {
+        width: 100%;
+    }
+
+    .h-auto {
+        height: auto;
+    }
+
+    .rounded-t-lg {
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+        width: 45%
+    }
+
+    .mt-4 {
+        margin-top: 1rem;
+    }
+
+    .block {
+        display: block;
+    }
+
+    .text-blue-600 {
+        color: #2563eb;
+    }
+
+    .hover\:underline:hover {
+        text-decoration: underline;
+    }
+</style>
 
 <section class="my-44 mx-auto md:w-3/4 lg:w-1/2">
-    <h2>Search Results</h2>
-    <!-- Display the search results here using the data passed from the server -->
-    <!-- Example: Loop through the books array and display each book's information -->
-    <div class="grid grid-cols-3 gap-4">
-        {{#each books}}
-        <div class="bg-white rounded-lg shadow-lg p-4">
-                 <!-- Display the book's title -->
-            <h3 class="text-xl font-semibold">{{this.title}}</h3>
-                 <!-- Display the book's description-->
-            <p class="text-gray-600">{{this.description}}</p>
-            <!-- Display the book's image -->
-            <img src="{{this.image}}" alt="Book Cover" class="w-full h-auto rounded-lg mt-4">
-
-            <!-- Display the book's link -->
-            <a href="{{this.link}}" target="_blank" class="block mt-4 text-blue-600 hover:underline">View Book</a>
-
-            <!-- Display more book information as needed -->
-        </div>
-        {{/each}}
+  <h2>Search Results</h2>
+  <!-- Display the search results here using the data passed from the server -->
+  <!-- Example: Loop through the books array and display each book's information -->
+  <div class="grid grid-cols-3 gap-4">
+    {{#each books}}
+    <div class="bg-white rounded-lg shadow-lg p-4">
+      <!-- Display the book's image -->
+     <div class="flex justify-center">
+    <img src="{{this.image}}" alt="Book Cover" class="object-cover w-30 h-50 rounded-t-lg">
+  </div>
+      <div class="mt-4">
+        <!-- Display the book's title -->
+        <h3 class="text-xl font-semibold">{{this.title}}</h3>
+        <!-- Display the book's description-->
+        <p class="text-gray-600">{{this.description}}</p>
+        <!-- Display the book's link -->
+        <a href="{{this.link}}" target="_blank" class="block mt-4 text-blue-600 hover:underline">View Book</a>
+        <!-- Display more book information as needed -->
+      </div>
     </div>
+    {{/each}}
+  </div>
 </section>
+
