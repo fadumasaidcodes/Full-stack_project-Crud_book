@@ -177,7 +177,7 @@ main {
   .card:hover {
   transform: translateY(-10px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-  background-color: #f0f0f0;
+  background-color: #e0c3c3;
   }
   
   .card h2 {
