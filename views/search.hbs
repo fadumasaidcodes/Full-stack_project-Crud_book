@@ -1,116 +1,119 @@
-<style>
-    .my-44 {
-        margin-top: 11rem;
-        margin-bottom: 11rem;
-    }
+<!DOCTYPE html>
+<html lang="en">
 
-    .mx-auto {
-        margin-left: auto;
-        margin-right: auto;
-    }
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="css/style.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./dist/output.css">
+    <link href="https://fonts.googleapis.com/css?family=Anton|Jura&display=swap" rel="stylesheet">
+</head>
 
-    .md:w-3/4 {
-        width: 75%;
-    }
+<body>
 
-    .lg:w-1/2 {
-        width: 50%;
-    }
+<header class="bg-gray-800 py-4 sticky-nav">
+    <nav class="container mx-auto px-4 flex items-center justify-between">
+        <a href="#" class="text-white text-2xl font-bold pr-8">Favourite Books</a>
+        <ul class="text-white flex space-x-4">
+            <li><a href="#" class="hover:text-gray-300">Home</a></li>
+            <li class="list-none"><a href="#" class="hover:text-gray-300">about</a></li>
+            <li><a href="#" class="hover:text-gray-300">Books</a></li>
+            <li><a href="#" class="hover:text-gray-300">Contact</a></li>
+        </ul>
+        <div class="flex-grow"></div>
+        <input type="checkbox" id="switch" class="nav-toggle" />
+        <label for="switch" class="nav-toggle-label">Toggle</label>
+        <div class="w-4"></div> <!-- Space between toggle and logout -->
+        <a href="./logout" class="hover:text-gray-300">Logout</a>
+    </nav>
+</header>
+<div class="flex flex-col items-center justify-center min-h-screen">
+  <h1 class="mt-8 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Search Results of Our Book</h1>
+  <p class="mt-4 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">"A great book is a friend that never lets you down."</p>
 
-    .grid {
-        display: grid;
-    }
-
-    .grid-cols-3 {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .gap-4 {
-        gap: 1rem;
-    }
-
-    .bg-white {
-        background-color: #fff;
-    }
-
-    .rounded-lg {
-        border-radius: 0.5rem;
-    }
-
-    .shadow-lg {
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .p-4 {
-        padding: 1rem;
-    }
-
-    .text-xl {
-        font-size: 1.25rem;
-        line-height: 1.75rem;
-    }
-
-    .font-semibold {
-        font-weight: 600;
-    }
-
-    .text-gray-600 {
-        color: #4b5563;
-    }
-
-    .w-full {
-        width: 100%;
-    }
-
-    .h-auto {
-        height: auto;
-    }
-
-    .rounded-t-lg {
-        border-top-left-radius: 0.5rem;
-        border-top-right-radius: 0.5rem;
-        width: 45%
-    }
-
-    .mt-4 {
-        margin-top: 1rem;
-    }
-
-    .block {
-        display: block;
-    }
-
-    .text-blue-600 {
-        color: #2563eb;
-    }
-
-    .hover\:underline:hover {
-        text-decoration: underline;
-    }
-</style>
-
-<section class="my-44 mx-auto md:w-3/4 lg:w-1/2">
-  <h2>Search Results</h2>
-  <!-- Display the search results here using the data passed from the server -->
-  <!-- Example: Loop through the books array and display each book's information -->
-  <div class="grid grid-cols-3 gap-4">
-    {{#each books}}
-    <div class="bg-white rounded-lg shadow-lg p-4">
-      <!-- Display the book's image -->
-     <div class="flex justify-center">
-    <img src="{{this.image}}" alt="Book Cover" class="object-cover w-30 h-50 rounded-t-lg">
-  </div>
-      <div class="mt-4">
-        <!-- Display the book's title -->
-        <h3 class="text-xl font-semibold">{{this.title}}</h3>
-        <!-- Display the book's description-->
-        <p class="text-gray-600">{{this.description}}</p>
-        <!-- Display the book's link -->
-        <a href="{{this.link}}" target="_blank" class="block mt-4 text-blue-600 hover:underline">View Book</a>
-        <!-- Display more book information as needed -->
+  <section class="my-12 mx-auto w-full px-4 md:w-3/4 lg:w-1/2">
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+      {{#each books}}
+      <div class="bg-white border border-gray-200 rounded-lg shadow-lg">
+        <a href="#" class="block">
+          <img src="{{this.image}}" alt="Book Cover" class="object-cover w-full h-64 rounded-t-lg">
+        </a>
+        <div class="p-4">
+          <a href="#" class="block">
+            <h3 class="mb-2 text-xl font-bold text-gray-900">{{this.title}}</h3>
+          </a>
+          <p class="mb-4 text-gray-600 line-clamp-3">{{this.description}}</p>
+          <a href="{{this.link}}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+            Read more
+            <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+            </svg>
+          </a>
+        </div>
       </div>
+      {{/each}}
     </div>
-    {{/each}}
-  </div>
-</section>
+  </section>
+</div>
+	<footer class="bg-gray-800 py-10">
+		<div class="container mx-auto px-4">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+				<div>
+					<h4 class="text-white text-lg font-medium">About Us</h4>
+					<ul class="mt-4">
+						<li><a href="#" class="text-gray-400 hover:text-gray-200">Our
+								Mission</a></li>
+						<li><a href="#" class="text-gray-400 hover:text-gray-200">FAQs</a></li>
+						<li><a href="#" class="text-gray-400 hover:text-gray-200">Contact Us</a>
+						</li>
+					</ul>
+				</div>
+				<div>
+					<h4 class="text-white text-lg font-medium">Categories</h4>
+					<ul class="mt-4">
+						<li><a href="#" class="text-gray-400 hover:text-gray-200">Fiction</a>
+						</li>
+						<li><a href="#" class="text-gray-400 hover:text-gray-200">Non-fiction</a></li>
+						<li><a href="#" class="text-gray-400 hover:text-gray-200">Science</a>
+						</li>
+					</ul>
+				</div>
+				<div>
+					<h4 class="text-white text-lg font-medium">Connect</h4>
+					<ul class="mt-4">
+						<li><a href="#" class="text-gray-400 hover:text-gray-200">Facebook</a>
+						</li>
+						<li><a href="#" class="text-gray-400 hover:text-gray-200">Twitter</a>
+						</li>
+						<li><a href="#" class="text-gray-400                        hover:text-gray-200">Instagram</a>
+						</li>
+						<li><a href="#" class="text-gray-400 hover:text-gray-200">LinkedIn</a>
+						</li>
+					</ul>
+				</div>
+				<div>
+					<h4 class="text-white text-lg font-medium">Subscribe</h4>
+					<p class="mt-4 text-gray-400">Subscribe to our newsletter for the latest
+						updates.</p>
+					<form class="mt-4">
+						<input type="email"
+							class="w-full px-4 py-2 rounded-lg bg-gray-900 text-gray-100 focus:outline-none"
+							placeholder="Enter your email">
+						<button
+							class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 focus:outline-none">Subscribe</button>
+					</form>
+				</div>
+			</div>
+			<div class="border-t border-gray-700 mt-8 pt-8">
+				<p class="text-gray-400 text-sm text-center">© 2023 Favourite Books. All rights
+					reserved.</p>
+			</div>
+		</div>
+	</footer>
 
+
+</body>
+
+</html>

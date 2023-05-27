@@ -286,7 +286,6 @@ router.get('/search-results', requireLogin, async (ctx) => {
     // Extract relevant information from the API response
     const books = data.items.map((item) => ({
       title: item.volumeInfo.title,
-      description: item.volumeInfo.description,
       image: item.volumeInfo.imageLinks?.thumbnail,
       link: item.volumeInfo.infoLink,
     }));
