@@ -231,6 +231,7 @@ label {
   display: block;
   border-radius: 100px;
   position: relative;
+  margin-right: 58px;
 }
 
 label:after {

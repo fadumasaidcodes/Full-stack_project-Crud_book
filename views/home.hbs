@@ -60,6 +60,8 @@
 			font-size: 1.5rem;
 		}
 
+		
+
 		.font-bold {
 			font-weight: bold;
 		}
@@ -106,24 +108,23 @@
 		}
 	</style>
 
-<header class="bg-gray-800 py-4 sticky-nav">
-    <nav class="container mx-auto px-4 flex items-center justify-between">
-        <a href="#" class="text-white text-2xl font-bold pr-8">Favourite Books</a>
-        <ul class="text-white flex space-x-4">
-            <li><a href="#" class="hover:text-gray-300">Home</a></li>
-            <li class="list-none"><a href="#search-section" class="hover:text-gray-300">Search</a></li>
-            <li><a href="./form" class="hover:text-gray-300">Add a Book</a></li>
-            <li><a href="#footer" class="hover:text-gray-300">Contact</a></li>
-        </ul>
-        <div class="flex-grow"></div>
-        <input type="checkbox" id="switch" class="nav-toggle" />
-        <label for="switch" class="nav-toggle-label">Toggle</label>
-        <div class="w-4"></div> <!-- Space between toggle and logout -->
-        <a href="./logout" class="hover:text-gray-300">Logout</a>
-    </nav>
-</header>
+	<header class="bg-gray-800 py-4 sticky-nav">
+		<nav class="container mx-auto px-4 flex items-center justify-between">
+			<a href="#" class="text-white text-2xl font-bold pr-8">Favourite Books</a>
+			<ul class="text-white flex space-x-4">
+				<li><a href="#" class="hover:text-gray-300">Home</a></li>
+				<li class="list-none"><a href="#search-section" class="hover:text-gray-300">Search</a></li>
+				<li><a href="./form" class="hover:text-gray-300">Add a Book</a></li>
+				<li><a href="#footer" class="hover:text-gray-300">Contact</a></li>
+			</ul>
+			<div class="flex-grow"></div>
+			<input type="checkbox" id="switch" class="nav-toggle" style="margin-right: 1.5rem;" />
+			<label for="switch" class="nav-toggle-label">Toggle</label>
+			<a href="./logout" class="hover:text-gray-300 font-bold text-lg" style="color: pink;">Logout</a>
+		</nav>
+	</header>
 
-
+	</header>
 
 	<section
 		class="bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply mb-12"
@@ -155,54 +156,58 @@
 		</div>
 	</section>
 
-<section id="search-section" class="mt-16 mb-8 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="mb-8 text-3xl font-extrabold leading-tight text-white md:text-4xl lg:text-5xl">
-                    Search <mark class="px-2 text-white bg-blue-600 rounded">Limitless Books</mark> with our Google Books API
-                </h1>
-            </div>
-        </div>
-    </div>
-</section>
+	<section id="search-section" class="mt-16 mb-8 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h1 class="mb-8 text-3xl font-extrabold leading-tight text-white md:text-4xl lg:text-5xl">
+						Search <mark class="px-2 text-white bg-blue-600 rounded">Limitless Books</mark> with our Google
+						Books API
+					</h1>
+				</div>
+			</div>
+		</div>
+	</section>
 
-<section class="search-container">
-    <form>
-        <!-- Search input -->
-        <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search a book</label>
-        <div class="relative">
-            <input type="search" id="default-search" class="block w-full p-3 pl-9 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search a book" required>
-            <!-- Submit button -->
-            <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">Search</button>
-        </div>
-    </form>
-</section>
+	<section class="search-container">
+		<form>
+			<!-- Search input -->
+			<label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search a book</label>
+			<div class="relative">
+				<input type="search" id="default-search"
+					class="block w-full p-3 pl-9 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+					placeholder="Search a book" required>
+				<!-- Submit button -->
+				<button type="submit"
+					class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">Search</button>
+			</div>
+		</form>
+	</section>
 
 
 
 
 
-<script>
-  document.querySelector('form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission behavior
+	<script>
+		document.querySelector('form').addEventListener('submit', function (event) {
+			event.preventDefault(); // Prevent the default form submission behavior
 
-    const searchQuery = document.getElementById('default-search').value;
+			const searchQuery = document.getElementById('default-search').value;
 
-    // Perform validation on the search query if needed
+			// Perform validation on the search query if needed
 
-    console.log('Search query:', searchQuery); // Add this line to log the search query
+			console.log('Search query:', searchQuery); // Add this line to log the search query
 
-    window.location.href = `/search-results?query=${encodeURIComponent(searchQuery)}`;
-  });
-</script>
+			window.location.href = `/search-results?query=${encodeURIComponent(searchQuery)}`;
+		});
+	</script>
 
-<br>
+	<br>
 
-<div class="centered-heading">
- <h2>Discover Books in Our Library</h2>
+	<div class="centered-heading">
+		<h2>Discover Books in Our Library</h2>
 
-</div>
+	</div>
 
 	<section class="card-container" style="margin-left: 20px; margin-right: 20px; margin-top 40px;">
 

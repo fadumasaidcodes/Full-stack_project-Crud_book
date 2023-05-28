@@ -17,10 +17,9 @@
     <nav class="container mx-auto px-4 flex items-center justify-between">
         <a href="#" class="text-white text-2xl font-bold pr-8">Favourite Books</a>
         <ul class="text-white flex space-x-4">
-            <li><a href="#" class="hover:text-gray-300">Home</a></li>
-            <li class="list-none"><a href="#" class="hover:text-gray-300">about</a></li>
-            <li><a href="#" class="hover:text-gray-300">Books</a></li>
-            <li><a href="#" class="hover:text-gray-300">Contact</a></li>
+             <li><a href="./home" class="hover:text-gray-300">Home</a></li>
+            <li><a href="./form" class="hover:text-gray-300">Add a Book</a></li>
+            <li><a href="#footer" class="hover:text-gray-300">Contact</a></li>
         </ul>
         <div class="flex-grow"></div>
         <input type="checkbox" id="switch" class="nav-toggle" />
@@ -57,7 +56,7 @@
     </div>
   </section>
 </div>
-	<footer class="bg-gray-800 py-10">
+	<footer class="bg-gray-800 py-10" id="footer">
 		<div class="container mx-auto px-4">
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 				<div>
@@ -113,6 +112,32 @@
 		</div>
 	</footer>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+	</script>
+
+	<script>
+		$(document).ready(function () {
+			var isDark = false; // Set isDark to false to start with the light mode
+
+			var themeButtonEl = $('#switch');
+			themeButtonEl.on('click', function () {
+				if (isDark) {
+					$('body').css({ 'background-color': '#93a9bf', color: '#1a1a1a' });
+					$('.card').css({ 'background-color': '#FFFFFF', color: '#000000' });
+					isDark = false;
+				} else {
+					$('body').css({ 'background-color': '#1a1a1a', color: '#FFFFFF' });
+					$('.card').css({ 'background-color': '#1a1a1a', color: '#FFFFFF' });
+					isDark = true;
+				}
+			});
+		});
+	</script>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 
