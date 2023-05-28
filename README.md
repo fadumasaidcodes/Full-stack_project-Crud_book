@@ -1,4 +1,6 @@
-[Live](https://book-tg75.onrender.com/)[Note: the website may take a few seconds to load as rendering can be slow].
+[Deployed Website](https://book-tg75.onrender.com/).
+- [Note: the website may take a few seconds to load as rendering can be slow]
+
 # Bookshop Web Application Description
 
 The Bookshop Web Application follows a CRUD (Create, Read, Update, Delete) style for managing books. 
