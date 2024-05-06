@@ -1,8 +1,18 @@
 [Deployed Website](https://book-tg75.onrender.com/).
 - [Note: the website may take a few seconds to load as rendering can be slow]
 
+# Website Demo - enter 1234 username and password - 1234 fro a quick access 
+
+# Website Demo
+
 [![Watch the video](https://i.stack.imgur.com/Vp2cE.png)](https://www.youtube.com/watch?v=IFi5-qxqpc4)
 
+## Access Instructions
+
+To quickly access the demo, use the following credentials:
+
+- **Username:** 1234
+- **Password:** 1234
 
 
 # Bookshop Web Application Description
