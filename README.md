@@ -1,7 +1,8 @@
 [Deployed Website](https://book-tg75.onrender.com/).
 - [Note: the website may take a few seconds to load as rendering can be slow]
 
-[![Watch the video](https://thumbnail_url.png)](https://www.youtube.com/watch?v=IFi5-qxqpc4)
+[![Watch the video](https://i.stack.imgur.com/Vp2cE.png)](https://www.youtube.com/watch?v=IFi5-qxqpc4)
+
 
 
 # Bookshop Web Application Description
@@ -11,7 +12,6 @@ The Bookshop Web Application follows a CRUD (Create, Read, Update, Delete) style
 Here's an explanation of how each operation is supported:
 
  ### Create:
-
 - Users can add new books to the bookshop by filling out a form. The application provides a route, '/form', which displays a form for adding a new book.
 - Upon submitting the form, the application processes the data and adds the book to the database using the 'POST /add' route.
 
