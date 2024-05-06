@@ -12,12 +12,6 @@ To quickly access the demo, use the following credentials:
 
 [![Watch the video](https://i.stack.imgur.com/Vp2cE.png)](https://www.youtube.com/watch?v=IFi5-qxqpc4)
 
-## Access Instructions
-
-To quickly access the demo, use the following credentials:
-
-- **Username:** 1234
-- **Password:** 1234
 
 
 # Bookshop Web Application Description
