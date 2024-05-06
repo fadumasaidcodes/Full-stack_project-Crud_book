@@ -1,7 +1,12 @@
 [Deployed Website](https://book-tg75.onrender.com/).
 - [Note: the website may take a few seconds to load as rendering can be slow]
 
-### Enter 1234 username and password - 1234 fro a quick access 
+ ## Access Instructions
+
+To quickly access the demo, use the following credentials:
+
+- **Username:** 1234
+- **Password:** 1234
 
 # Website Demo
 
