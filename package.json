@@ -1,11 +1,11 @@
 {
   "name": "bookshop",
   "version": "1.0.0",
-  "description": "",
+  "description": "Koa Bookshop App",
   "main": "index.js",
   "scripts": {
     "server": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --runInBand"
   },
   "author": "",
   "license": "ISC",
