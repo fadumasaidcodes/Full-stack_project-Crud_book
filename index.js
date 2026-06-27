@@ -46,15 +46,15 @@ app.use(router.allowedMethods());
 ======================== */
 const port = 8080;
 
-let server;
-
-if (process.env.NODE_ENV !== 'test') {
-  server = app.listen(port, () => {
+// Always create the server instance so the test can close it
+const server = app.listen(port, () => {
+  if (process.env.NODE_ENV !== 'test') {
     console.log(`listening on port ${port}`);
-  });
-}
+  }
+});
 
 /* ========================
    EXPORT
 ======================== */
-module.exports = app;
+// Change this from 'module.exports = app' to:
+module.exports = { app, server };
